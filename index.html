@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABC 互動英語 293 期 · 互動學習單</title>
+<style>
+:root{--ink:#22252b;--muted:#667085;--bg:#f3f5fa;--card:#fff;--line:#e2e6ef;--w0:#1d4fa0;--w1:#e07b1a;--w2:#2a6fb5;--w3:#c0283b;--w4:#3f8f3a;--wx:#5b4fa0;--adv:#0f7c8c;--quiz:#b8322a;--cards:#8a5a2b;--ok:#1f9d55;--bad:#d64545;--c:var(--w0)}
+*{box-sizing:border-box}
+.paper{background:#fffef8;color:#222;border:1px solid #d9d4c0;border-radius:10px;padding:14px 16px;font-family:Georgia,"Times New Roman","Noto Serif TC",serif;line-height:1.7;margin-bottom:8px}
+.ph1{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;border-bottom:2px solid #222;padding-bottom:4px}.ph1 .pt{font:900 24px/1 "Noto Sans TC",sans-serif}
+.pscore{margin-left:auto;color:#d64545;font:700 36px/1 "Comic Sans MS","Segoe Print",cursive;min-width:40px}
+.pu{font-weight:700;margin:6px 0 2px}.ppart{font-weight:700;margin:14px 0 4px;font-size:17px}
+.ptext{background:#fff;border:1px solid #e6e0c8;border-radius:8px;padding:10px 12px;margin:4px 0}
+.pblank{font-weight:700;color:#1d4fa0;white-space:nowrap}.pblank.ok{color:#1f9d55;text-decoration:underline}.pblank.bad{color:#d64545;text-decoration:underline}
+.sent.ev{background:#ffc078;border-radius:3px;box-shadow:0 0 0 2px #ffc078}
+.pitem{padding:6px 0;border-bottom:1px dashed #e6e0c8}.pq{margin-bottom:4px}
+.pmark{display:inline-block;min-width:18px;text-align:center;font:700 18px "Comic Sans MS","Segoe Print",cursive;color:#1d4fa0}.pmark.ok{color:#1f9d55}.pmark.bad{color:#d64545}
+.popts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px 8px}
+.popt{border:1.5px solid transparent;background:transparent;border-radius:8px;padding:3px 8px;text-align:left;font:inherit;color:#222;cursor:pointer}
+.popt:hover{border-color:#cfc8ad}.popt.sel{border-color:#1d4fa0;background:#e9f0ff}.popt.ok{border-color:#1f9d55;background:#e3f6ea}.popt.bad{border-color:#d64545;background:#fde8e8}
+
+.vw{color:#e0457b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .vw{color:#ff86b0}}
+:root[data-theme="dark"] .vw{color:#ff86b0}
+:root[data-theme="dark"]{--ink:#e6e8ee;--muted:#9aa3b5;--bg:#14171d;--card:#1d2129;--line:#323846}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e6e8ee;--muted:#9aa3b5;--bg:#14171d;--card:#1d2129;--line:#323846}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .vc,:root:not([data-theme="light"]) .opt,:root:not([data-theme="light"]) .chip,:root:not([data-theme="light"]) .cd,:root:not([data-theme="light"]) nav,:root:not([data-theme="light"]) nav button,:root:not([data-theme="light"]) .q,:root:not([data-theme="light"]) .unit>h2,:root:not([data-theme="light"]) textarea,:root:not([data-theme="light"]) .trow input{background:#232833;color:var(--ink)}
+:root:not([data-theme="light"]) .vc.ref,:root:not([data-theme="light"]) .note,:root:not([data-theme="light"]) .bank span,:root:not([data-theme="light"]) .hints span,:root:not([data-theme="light"]) .model{background:#2a2f3a;color:var(--ink)}
+:root:not([data-theme="light"]) .say,:root:not([data-theme="light"]) .tag{background:#2f3645;color:var(--ink)}
+:root:not([data-theme="light"]) .opt.ok,:root:not([data-theme="light"]) .chip.ok,:root:not([data-theme="light"]) .cd.done{background:#183a27}
+:root:not([data-theme="light"]) .opt.bad,:root:not([data-theme="light"]) .chip.bad{background:#3d1d1d}
+:root:not([data-theme="light"]) .btn.ghost{background:transparent}}
+
+body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+header{background:linear-gradient(135deg,#183f86,#2a6fb5 60%,#58a0e2);color:#fff;padding:20px 16px 16px}
+.hd{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font:900 42px/1 "Arial Black",Arial,sans-serif;letter-spacing:-2px;background:#fff;color:#183f86;padding:6px 12px;border-radius:10px}
+.hd h1{margin:0;font-size:26px}.hd p{margin:2px 0 0;opacity:.9;font-size:14px}
+.issue{margin-left:auto;background:#ffd84d;color:#222;font-weight:800;border-radius:12px;padding:6px 12px;font-size:14px}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+nav .in{max-width:980px;margin:0 auto;display:flex;gap:6px;padding:8px 12px}
+nav button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font:inherit;font-weight:700;cursor:pointer;color:var(--ink);flex:none}
+nav button.on{background:var(--c);border-color:var(--c);color:#fff}
+nav .sc{font-size:12px;opacity:.85;margin-left:4px}
+.tools{max-width:980px;margin:8px auto 0;padding:0 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+main{max-width:980px;margin:0 auto;padding:12px 16px 40px}
+section.page{display:none}section.page.on{display:block}
+.band{border-radius:14px;color:#fff;padding:14px 18px;margin:6px 0 14px;background:var(--c)}
+.band h2{margin:0;font-size:22px}.band p{margin:4px 0 0;opacity:.95}
+.unit{background:var(--card);border-radius:14px;border:1px solid var(--line);margin:0 0 16px;overflow:hidden}
+.unit>h2{margin:0;padding:12px 16px;font-size:19px;border-left:8px solid var(--c);background:#fafbfe;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.unit h2 small{color:var(--muted);font-weight:500;font-size:13px}
+.block{padding:12px 16px;border-top:1px dashed var(--line)}
+.block h3{margin:0 0 8px;font-size:16px;color:var(--c);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag{display:inline-block;font-size:12px;padding:0 8px;border-radius:999px;background:#eef2fa;color:var(--muted)}
+.bs{margin-left:auto;font-size:13px;color:var(--muted);font-weight:700}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.vc{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start;background:#fff}
+.vc b{font-size:17px}.vc .zh{color:var(--muted);font-size:14px}.vc.ref{background:#fbfaf3;border-style:dashed}
+.say{border:none;background:#eef2fa;border-radius:8px;cursor:pointer;padding:2px 7px;font-size:15px;flex:none;line-height:1.5}
+.say:hover{background:#dde6f6}
+.btn{border:none;background:var(--c);color:#fff;border-radius:10px;padding:7px 14px;font:inherit;font-weight:700;cursor:pointer;margin:4px 6px 4px 0}
+.btn.ghost{background:#fff;color:var(--c);border:2px solid var(--c)}
+.btn.rec{background:var(--bad);color:#fff;border-color:var(--bad)}
+.q{margin:8px 0;padding:10px 12px;border-radius:10px;background:#fafbfe;border:1px solid var(--line)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:10px;padding:5px 12px;cursor:pointer;font:inherit;text-align:left;color:var(--ink)}
+.opt:hover{border-color:var(--c)}
+.opt.ok{border-color:var(--ok);background:#e8f7ee}.opt.bad{border-color:var(--bad);background:#fdecec}
+.fb{font-size:14px;margin-top:6px}.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+.zhl{font-size:13px;color:var(--muted)}
+input.blank{font:inherit;border:none;border-bottom:2px solid var(--c);background:transparent;width:170px;max-width:60vw;padding:0 4px;text-align:center;color:var(--ink)}
+input.blank.ok{border-color:var(--ok);color:var(--ok);font-weight:700}input.blank.bad{border-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}.bank span{background:#fff4e0;border:1px solid #f1d29b;border-radius:8px;padding:1px 10px;font-size:14px}
+.ph{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:start;padding:8px 0;border-bottom:1px solid #f0f2f7}
+.ph b{color:var(--c)}.ph i{color:#444}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-height:44px;padding:6px;border:2px dashed var(--line);border-radius:10px;margin:6px 0}
+.chip{background:#fff;border:2px solid var(--c);border-radius:10px;padding:4px 10px;cursor:pointer;font:inherit;text-align:left;color:var(--ink)}
+.chip.ok{border-color:var(--ok);background:#e8f7ee}.chip.bad{border-color:var(--bad);background:#fdecec}
+.srow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid #f0f2f7}
+.srow .t{flex:1 1 220px}
+.trow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid #f0f2f7}
+.trow .p{flex:1 1 240px}
+.trow input{font:inherit;padding:5px 8px;border:2px solid var(--line);border-radius:8px;flex:1 1 220px}
+.trow input.ok{border-color:var(--ok);background:#f0fbf4}.trow input.bad{border-color:var(--bad);background:#fff4f4}
+textarea{width:100%;min-height:120px;font:inherit;border:2px solid var(--line);border-radius:10px;padding:10px;resize:vertical}
+.hints{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.hints span{background:#eef6ee;border:1px solid #cfe6cf;border-radius:8px;padding:1px 9px;font-size:14px}
+.model{background:#f6f3ff;border-left:4px solid var(--wx);padding:8px 12px;border-radius:8px;margin-top:8px;white-space:pre-line}
+.note{background:#fffbea;border:1px solid #f3e3a2;border-radius:10px;padding:10px 14px;font-size:15px}
+.dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+.dc{border-radius:12px;padding:12px;color:#fff;cursor:pointer;border:none;text-align:left;font:inherit}
+.dc b{display:block;font-size:17px}.dc span{font-size:13px;opacity:.95}
+.bar{height:8px;background:rgba(255,255,255,.35);border-radius:9px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:#fff}
+.cal{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.cd{border:2px solid var(--line);border-radius:10px;padding:6px 8px;background:#fff;font-size:13px;cursor:pointer;position:relative;min-height:84px}
+.cd .d{font-weight:900;font-size:16px}.cd .u{display:inline-block;color:#fff;border-radius:6px;padding:0 6px;font-size:11px;font-weight:700}
+.cd.done{background:#eefaf2;border-color:var(--ok)}.cd.done::after{content:"✔";position:absolute;right:8px;top:4px;color:var(--ok);font-weight:900;font-size:18px}
+.cd .pg{color:var(--muted);font-size:11px}
+.calh{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;font-weight:800;text-align:center;font-size:13px;color:#fff}
+.calh div{background:#333;border-radius:8px;padding:2px 0}
+.emo{font-size:20px}
+.foot{text-align:center;color:var(--muted);font-size:13px;margin-top:24px}
+@media(max-width:640px){.cal,.calh{grid-template-columns:repeat(3,1fr)}.calh{display:none}.hd h1{font-size:21px}.logo{font-size:32px}}
+@media print{nav,.tools,.btn,.say{display:none!important}section.page{display:block!important}.unit{break-inside:avoid-page}}
+</style>
+</head>
+<body>
+<header><div class="hd">
+  <div class="logo">ABC</div>
+  <div><h1>互動英語 · 11 月號互動學習單</h1><p>2026 November · No.293 ｜ 本月焦點：飯店英語 Hotel English</p></div>
+  <div class="issue">No.293</div>
+</div></header>
+<nav><div class="in" id="nav"></div></nav>
+<div class="tools">
+  <label><input type="checkbox" id="slow"> 🐢 慢速朗讀</label>
+  <span>｜🔊 英文朗讀使用瀏覽器內建語音（優先 Google US English）</span>
+</div>
+<main id="main"></main>
+<div class="foot">透過輸出來檢查輸入，透過寫作來閱讀 · 搭配《ABC 互動英語》2026 年 11 月號使用 · 作答紀錄只存在這台裝置</div>
+
+<script>
+/* ========== 基礎工具 ========== */
+var PREFIX='abc293_';
+var store={get:function(k,d){try{var v=localStorage.getItem(PREFIX+k);return v?JSON.parse(v):d}catch(e){return d}},set:function(k,v){try{localStorage.setItem(PREFIX+k,JSON.stringify(v))}catch(e){}}};
+function h(tag,props){var e=document.createElement(tag);if(props){for(var k in props){var v=props[k];if(k==='class')e.className=v;else if(k==='html')e.innerHTML=v;else if(k.indexOf('on')===0)e[k]=v;else e.setAttribute(k,v);}}
+  for(var i=2;i<arguments.length;i++){var c=arguments[i];if(c==null)continue;if(Array.isArray(c)){c.forEach(function(x){if(x!=null)e.append(x.nodeType?x:document.createTextNode(x))})}else e.append(c.nodeType?c:document.createTextNode(c));}return e;}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a;}
+function norm(s){return String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/[.?!,。]+$/,'').replace(/\s+/g,' ').trim();}
+function okAns(v,a){return String(a).split('|').some(function(x){return norm(x)===norm(v)});}
+
+/* ========== 語音（含 Chrome watchdog） ========== */
+var voices=[],wd=null;
+function loadV(){try{voices=window.speechSynthesis?speechSynthesis.getVoices():[]}catch(e){voices=[]}}
+if(window.speechSynthesis){loadV();try{speechSynthesis.onvoiceschanged=loadV}catch(e){}}
+function pickV(){return voices.find(function(v){return v.name==='Google US English'})||voices.find(function(v){return v.lang==='en-US'})||voices.find(function(v){return /^en/i.test(v.lang)});}
+function speak(t){if(!window.speechSynthesis)return;try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(String(t).replace(/_{2,}/g,' blank '));var v=pickV();if(v)u.voice=v;u.lang='en-US';u.rate=document.getElementById('slow').checked?0.65:0.92;
+  clearInterval(wd);wd=setInterval(function(){if(!speechSynthesis.speaking){clearInterval(wd);return}speechSynthesis.pause();speechSynthesis.resume()},10000);
+  u.onend=u.onerror=function(){clearInterval(wd)};setTimeout(function(){speechSynthesis.speak(u)},60)}catch(e){}}
+function sayBtn(t){return h('button',{class:'say',type:'button',title:'朗讀',onclick:function(e){e.stopPropagation();speak(t)}},'🔊');}
+
+/* ========== 錄音 ========== */
+function recorder(){var au=h('audio',{controls:'',style:'display:none;max-width:100%;margin-top:6px'});var mr=null,chunks=[];
+  var b=h('button',{class:'btn ghost',type:'button'},'🎙️ 錄音');
+  b.onclick=function(){if(mr&&mr.state==='recording'){mr.stop();return}
+    if(!navigator.mediaDevices||!window.MediaRecorder){alert('這個瀏覽器不支援錄音，請改用 Chrome。');return}
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){chunks=[];mr=new MediaRecorder(s);mr.ondataavailable=function(e){if(e.data&&e.data.size)chunks.push(e.data)};
+      mr.onstop=function(){var bl=new Blob(chunks,{type:mr.mimeType||'audio/webm'});au.src=URL.createObjectURL(bl);au.style.display='block';s.getTracks().forEach(function(t){t.stop()});b.textContent='🎙️ 重錄';b.classList.remove('rec')};
+      mr.start();b.textContent='⏹ 停止錄音';b.classList.add('rec')}).catch(function(){alert('無法使用麥克風：請允許瀏覽器錄音權限。')})};
+  return h('div',null,b,au);}
+
+/* ========== 成績 ========== */
+var RES=store.get('res',{});var BLK=[];
+function rec(id,c,t){RES[id]={c:c,t:t};store.set('res',RES);updScores();}
+function secScore(sec){var c=0,t=0;BLK.forEach(function(b){if(b.sec===sec&&RES[b.id]){c+=RES[b.id].c;t+=RES[b.id].t}});return {c:c,t:t};}
+function updScores(){DATA.forEach(function(p){if(p.id==='home')return;var s=secScore(p.id);var n=document.getElementById('nsc_'+p.id);if(n)n.textContent=s.t?(s.c+'/'+s.t):'';});
+  BLK.forEach(function(b){var e=document.getElementById('bs_'+b.id);if(e){var r=RES[b.id];e.textContent=r?('✔ '+r.c+' / '+r.t):''}});renderDash();}
+function blockShell(b,sec,title,tag){BLK.push({id:b.id,sec:sec});var el=h('div',{class:'block'});el.append(h('h3',null,title,tag?h('span',{class:'tag'},tag):null,h('span',{class:'bs',id:'bs_'+b.id})));return el;}
+function resetBtn(b,sec,el){return h('button',{class:'btn ghost',type:'button',onclick:function(){delete RES[b.id];store.set('res',RES);BLK=BLK.filter(function(x){return x.id!==b.id});var n=make(b,sec);el.replaceWith(n);updScores();}},'↻ 重做');}
+
+/* ========== 區塊渲染 ========== */
+function make(b,sec){return ({vocab:vocab,phrases:phrases,mcq:mcq,tf:tf,cloze:cloze,order:order,sort:sortB,type:typeB,write:write,speak:speakB,note:noteB,quiz:quizB})[b.t](b,sec);}
+
+var VMAP={"shuttle": "sh[u]ttle", "bus": "b[u]s", "doorman": "d[oor]m[a]n", "luggage": "l[u]gg[a]ge", "cart": "c[ar]t", "hallway": "h[a]llw[ay]", "bellhop": "b[e]llh[o]p", "lobby": "l[o]bb[y]", "gift": "g[i]ft", "shop": "sh[o]p", "guest": "gu[e]st", "key": "k[ey]", "card": "c[ar]d", "front": "fr[o]nt", "desk": "d[e]sk", "clerk": "cl[er]k", "elevator": "[e]l[e]v[a]t[or]", "vending": "v[e]nd[i]ng", "machine": "m[a]ch[i]ne", "book": "b[oo]k", "credit": "cr[e]d[i]t", "form": "f[or]m", "borrow": "b[o]rr[ow]", "floor": "fl[oor]", "enter": "[e]nt[er]", "work": "w[or]k", "extra": "[e]xtr[a]", "tap": "t[a]p", "sensor": "s[e]ns[or]", "note": "n[o]te", "arrange": "[a]rr[a]nge", "straight": "str[aigh]t", "airport": "[air]p[or]t", "spoil": "sp[oi]l", "souvenir": "s[ou]v[e]n[ir]", "start": "st[ar]t", "holiday": "h[o]l[i]d[ay]", "season": "s[ea]s[o]n", "deal": "d[ea]l", "thanksgiving": "th[a]nksg[i]v[i]ng", "black": "bl[a]ck", "friday": "fr[i]d[ay]", "artist": "[ar]t[i]st", "raise": "r[ai]se", "even": "[e]v[e]n", "attention": "[a]tt[e]nti[o]n", "wallet": "w[a]ll[e]t", "recycle": "r[e]c[y]cle", "happy": "h[a]pp[y]", "glad": "gl[a]d", "sad": "s[a]d", "angry": "[a]ngr[y]", "mad": "m[a]d", "tired": "t[ir]ed", "bored": "b[or]ed", "excited": "[e]xc[i]t[e]d", "worried": "w[or]r[ie]d", "surprised": "s[ur]pr[i]sed", "scared": "sc[ar]ed", "lonely": "l[o]nel[y]", "nervous": "n[er]v[ou]s", "grateful": "gr[a]tef[u]l", "disappointed": "d[i]s[a]pp[oi]nt[e]d", "surprise": "s[ur]pr[i]se", "second": "s[e]c[o]nd", "scooter": "sc[oo]t[er]", "lovely": "l[o]vel[y]", "garage": "g[a]r[a]ge", "stupid": "st[u]p[i]d", "team": "t[ea]m", "report": "r[e]p[or]t", "boss": "b[o]ss", "project": "pr[o]j[e]ct", "email": "[e]m[ai]l", "program": "pr[o]gr[a]m", "future": "f[u]t[ur]e", "engineer": "[e]ng[i]n[eer]", "negative": "n[e]g[a]t[i]ve", "scholarship": "sch[o]l[ar]sh[i]p", "behind": "b[e]h[i]nd", "meeting": "m[ee]t[i]ng", "tool": "t[oo]l", "skill": "sk[i]ll", "broken": "br[o]k[e]n", "material": "m[a]t[e]r[i][a]l", "cut": "c[u]t", "waste": "w[a]ste", "interest": "[i]nt[er][e]st", "tip": "t[i]p", "site": "s[i]te", "church": "ch[ur]ch", "stop": "st[o]p", "sight": "s[igh]t", "interesting": "[i]nt[er][e]st[i]ng", "fantastic": "f[a]nt[a]st[i]c", "building": "bu[i]ld[i]ng", "happen": "h[a]pp[e]n", "explain": "[e]xpl[ai]n", "driver": "dr[i]v[er]", "hurry": "h[ur]r[y]", "passenger": "p[a]ss[e]ng[er]", "appreciate": "[a]ppr[e]c[i][a]te", "mailman": "m[ai]lm[a]n", "letter": "l[e]tt[er]", "mail": "m[ai]l", "daughter": "d[augh]t[er]", "husband": "h[u]sb[a]nd", "route": "r[ou]te", "father": "f[a]th[er]", "in": "[i]n", "law": "l[aw]", "suggest": "s[u]gg[e]st", "young": "y[ou]ng", "marry": "m[a]rr[y]", "please": "pl[ea]se", "training": "tr[ai]n[i]ng", "wedding": "w[e]dd[i]ng", "death": "d[ea]th", "date": "d[a]te", "forgive": "f[or]g[i]ve", "telegram": "t[e]l[e]gr[a]m", "finger": "f[i]ng[er]", "type": "t[y]pe", "mouse": "m[ou]se", "touch": "t[ou]ch", "password": "p[a]ssw[or]d", "social": "s[o]ci[a]l", "media": "m[e]d[i][a]", "account": "[a]cc[ou]nt", "accept": "[a]cc[e]pt", "voice": "v[oi]ce", "company": "c[o]mp[a]n[y]", "tell": "t[e]ll", "copy": "c[o]p[y]", "movement": "m[o]vem[e]nt", "user": "[u]s[er]", "safety": "s[a]fet[y]", "probably": "pr[o]b[a]bl[y]", "common": "c[o]mm[o]n", "strong": "str[o]ng", "regular": "r[e]g[u]l[ar]", "hack": "h[a]ck", "prize": "pr[i]ze", "sign": "s[i]gn", "anyone": "[a]n[y][o]ne", "honest": "h[o]n[e]st", "jealous": "j[ea]l[ou]s", "jealousy": "j[ea]l[ou]s[y]", "sibling": "s[i]bl[i]ng", "fear": "f[ear]", "notice": "n[o]t[i]ce", "classmate": "cl[a]ssm[a]te", "angle": "[a]ngle", "focus": "f[o]c[u]s", "growth": "gr[ow]th", "positive": "p[o]s[i]t[i]ve", "source": "s[our]ce", "destroy": "d[e]str[oy]", "explore": "[e]xpl[or]e", "adventure": "[a]dv[e]nt[ur]e", "interested": "[i]nt[er][e]st[e]d", "hope": "h[o]pe", "wish": "w[i]sh", "thanks": "th[a]nks", "national": "n[a]ti[o]n[a]l", "fall": "f[a]ll", "dish": "d[i]sh", "vegetable": "v[e]g[e]t[a]ble", "dessert": "d[e]ss[er]t", "pilgrim": "p[i]lgr[i]m", "harvest": "h[ar]v[e]st", "past": "p[a]st", "serve": "s[er]ve", "god": "g[o]d", "yard": "y[ar]d", "giant": "g[i][a]nt", "balloon": "b[a]ll[oo]n", "football": "f[oo]tb[a]ll", "parade": "p[a]r[a]de", "roast": "r[oa]st", "turkey": "t[ur]k[ey]", "stuffing": "st[u]ff[i]ng", "cranberry": "cr[a]nb[e]rr[y]", "sauce": "s[au]ce", "mashed": "m[a]shed", "potatoes": "p[o]t[a]t[oe]s", "and": "[a]nd", "gravy": "gr[a]v[y]", "green": "gr[ee]n", "bean": "b[ea]n", "carrot": "c[a]rr[o]t", "sweet": "sw[ee]t", "potato": "p[o]t[a]t[o]", "pumpkin": "p[u]mpk[i]n", "pie": "p[ie]", "pet": "p[e]t", "trick": "tr[i]ck", "computer": "c[o]mp[u]t[er]", "sheep": "sh[ee]p", "robot": "r[o]b[o]t", "design": "d[e]s[i]gn", "desktop": "d[e]skt[o]p", "monster": "m[o]nst[er]", "react": "r[e][a]ct", "seed": "s[ee]d", "download": "d[ow]nl[oa]d", "error": "[e]rr[or]", "corner": "c[or]n[er]", "mid": "m[i]d", "pointer": "p[oi]nt[er]", "task": "t[a]sk", "sports": "sp[or]ts", "player": "pl[ay][er]", "score": "sc[or]e", "point": "p[oi]nt", "lose": "l[o]se", "loss": "l[o]ss", "gain": "g[ai]n", "zero": "z[e]r[o]", "sum": "s[u]m", "relationship": "r[e]l[a]ti[o]nsh[i]p", "situation": "s[i]t[u][a]ti[o]n", "viewer": "v[iew][er]", "savings": "s[a]v[i]ngs", "spending": "sp[e]nd[i]ng", "sticker": "st[i]ck[er]", "chore": "ch[or]e", "claw": "cl[aw]", "goal": "g[oa]l", "list": "l[i]st", "keep": "k[ee]p", "track": "tr[a]ck", "of": "[o]f", "sweep": "sw[ee]p", "the": "th[e]", "do": "d[o]", "dishes": "d[i]sh[e]s", "errand": "[e]rr[a]nd", "post": "p[o]st", "office": "[o]ff[i]ce", "bakery": "b[a]k[e]r[y]", "bank": "b[a]nk", "phone": "ph[o]ne", "car": "c[ar]", "wash": "w[a]sh", "department": "d[e]p[ar]tm[e]nt", "store": "st[or]e", "dry": "dr[y]", "cleaner": "cl[ea]n[er]", "convenience": "c[o]nv[e]ni[e]nce", "library": "l[i]br[a]r[y]", "hardware": "h[ar]dw[ar]e", "farmers": "f[ar]m[er]s", "market": "m[ar]k[e]t", "dentist": "d[e]nt[i]st", "bill": "b[i]ll", "bankbook": "b[a]nkb[oo]k", "update": "[u]pd[a]te", "checkup": "ch[e]ck[u]p", "shaped": "sh[a]ped", "society": "s[o]c[i][e]t[y]", "gap": "g[a]p", "wealth": "w[ea]lth", "economy": "[e]c[o]n[o]m[y]", "poverty": "p[o]v[er]t[y]", "financial": "f[i]n[a]nci[a]l", "anaerobic": "[a]n[ae]r[o]b[i]c", "exercise": "[e]x[er]c[i]se", "aerobic": "[ae]r[o]b[i]c", "muscle": "m[u]scle", "weight": "w[eigh]t", "strength": "str[e]ngth", "workout": "w[or]k[ou]t", "solar": "s[o]l[ar]", "eclipse": "[e]cl[i]pse", "orbit": "[or]b[i]t", "observe": "[o]bs[er]ve", "telescope": "t[e]l[e]sc[o]pe", "astronomy": "[a]str[o]n[o]m[y]", "quick": "qu[i]ck", "bite": "b[i]te", "return": "r[e]t[ur]n", "duty": "d[u]t[y]", "schedule": "sch[e]d[u]le", "doctor": "d[o]ct[or]", "hospital": "h[o]sp[i]t[a]l", "operation": "[o]p[e]r[a]ti[o]n", "patient": "p[a]ti[e]nt", "perform": "p[er]f[or]m", "out": "[ou]t", "appointment": "[a]pp[oi]ntm[e]nt", "rounds": "r[ou]nds", "emergency": "[e]m[er]g[e]nc[y]", "call": "c[a]ll", "file": "f[i]le", "nurse": "n[ur]se", "hexed": "h[e]xed", "ordinary": "[or]d[i]n[a]r[y]", "teenage": "t[ee]n[a]ge", "bracelet": "br[a]cel[e]t", "wrist": "wr[i]st", "magical": "m[a]g[i]c[a]l", "power": "p[ow][er]", "witch": "w[i]tch", "master": "m[a]st[er]", "discover": "d[i]sc[o]v[er]", "secret": "s[e]cr[e]t", "forever": "f[or][e]v[er]", "passport": "p[a]ssp[or]t"};
+function vowelize(w){var s=h('span');String(w).split(/([A-Za-z]+)/).forEach(function(part){var a=/^[A-Za-z]+$/.test(part)&&VMAP[part.toLowerCase()];if(!a){s.append(part);return}
+  var k=0,open=false,buf='';for(var i=0;i<a.length;i++){var c=a[i];if(c==='['){if(buf)s.append(buf);buf='';open=true;continue}if(c===']'){s.append(h('span',{class:'vw'},buf));buf='';open=false;continue}buf+=part[k++];}if(buf)s.append(buf);});return s;}
+function quizB(b,sec){BLK.push({id:b.id,sec:sec});var L='ABCD';var el=h('div',{class:'block'});
+  el.append(h('h3',null,'📝 ',b.test+' 模擬小考',h('span',{class:'tag'},'作答完按「交卷」'),h('span',{class:'bs',id:'bs_'+b.id})));
+  var paper=h('div',{class:'paper'});el.append(paper);
+  paper.append(h('div',{class:'ph1'},h('span',{class:'pt'},'ABC互動英語'),h('span',null,'單元複習卷 '+b.test+'　2026 年 11 月號'),h('span',{class:'pscore'})),h('div',{class:'pu'},b.unit));
+  var items=[],n=0,names={vocab:'Vocabulary Questions',cloze:'Cloze',passage:'Short Passage Questions'};
+  function optRow(it){var row=h('div',{class:'popts'});it.btn=[];it.q.o.forEach(function(o,k){var bt=h('button',{class:'popt',type:'button'},'('+L[k]+') '+o);bt.onclick=function(){if(it.done)return;it.sel=k;it.btn.forEach(function(x,j){x.classList.toggle('sel',j===k)});it.mark.textContent=L[k]};it.btn.push(bt);row.append(bt)});return row;}
+  b.parts.forEach(function(p,pi){paper.append(h('div',{class:'ppart'},'Part '+(pi+1)+': '+names[p.type]+' ('+p.pct+'%)'));var each=p.pct/p.q.length;
+    if(p.type==='cloze'){var box=h('div',{class:'ptext'});p.blanks={};p.text.split(/(\{\d+\})/).forEach(function(seg){var m=seg.match(/^\{(\d+)\}$/);if(m){var s=h('span',{class:'pblank'},'__('+m[1]+')__');p.blanks[m[1]]=s;box.append(s)}else box.append(seg)});paper.append(box,h('div',null,sayBtn(p.text.replace(/\{\d+\}/g,' blank '))));}
+    if(p.type==='passage'){var box2=h('div',{class:'ptext'});p.sp=p.sent.map(function(s){var x=h('span',{class:'sent'},s+' ');box2.append(x);return x});paper.append(box2,h('div',null,sayBtn(p.sent.join(' '))));}
+    p.q.forEach(function(q){n++;var it={q:q,p:p,num:n,pts:each};var mark=h('span',{class:'pmark'},' ');it.mark=mark;var ex=h('div',{class:'fb'});it.ex=ex;
+      var head=h('div',{class:'pq'},'( ',mark,' ) ',h('b',null,n+'. '),q.q||'',q.q&&!/___/.test(q.q)?' ':'',q.q?sayBtn(q.q.replace('___',' blank ')):null);
+      paper.append(h('div',{class:'pitem'},head,optRow(it),ex));items.push(it);});});
+  var res=h('div',{class:'fb'});
+  var sub=h('button',{class:'btn',type:'button'},'📮 交卷');
+  sub.onclick=function(){var left=items.filter(function(it){return it.sel===undefined}).length;if(left&&!confirm('還有 '+left+' 題沒作答，確定交卷？'))return;
+    var sc=0,c=0;items.forEach(function(it){it.done=true;var ok=it.sel===it.q.a;if(ok){sc+=it.pts;c++}
+      it.btn[it.q.a].classList.add('ok');if(it.sel!==undefined&&!ok)it.btn[it.sel].classList.add('bad');it.mark.classList.add(ok?'ok':'bad');
+      it.ex.className='fb '+(ok?'ok':'bad');it.ex.textContent=(ok?'✔ ':'✘ 正解 ('+L[it.q.a]+') ')+(it.q.ex||'')+(it.q.ev&&!ok?'　👉 答題依據已用橘色標出':'');
+      if(it.p.type==='cloze'){var bl=it.p.blanks[it.num];bl.textContent=it.q.o[it.q.a];bl.className='pblank '+(ok?'ok':'bad')}
+      if(it.q.ev&&!ok)it.q.ev.forEach(function(i){it.p.sp[i].classList.add('ev')});
+      if(it.q.ev){var ev=it.q.ev;it.ex.append(' ',h('button',{class:'say',type:'button',onclick:function(){ev.forEach(function(i){it.p.sp[i].classList.toggle('ev')});it.p.sp[ev[0]].scrollIntoView({block:'center',behavior:'smooth'})}},'🔍 依據'))}});
+    sc=Math.round(sc);var best=Math.max(store.get('qb_'+b.id,0),sc);store.set('qb_'+b.id,best);
+    paper.querySelector('.pscore').textContent=sc;res.className='fb '+(sc>=80?'ok':'bad');res.textContent='得分 '+sc+' / 100（答對 '+c+' / '+items.length+' 題）｜最高分 '+best+(sc<100?'　→ 看橘色句子，找出答案的依據再重考一次':'　滿分！');
+    rec(b.id,c,items.length);sub.disabled=true;};
+  el.append(sub,h('button',{class:'btn ghost',type:'button',onclick:function(){BLK=BLK.filter(function(x){return x.id!==b.id});el.replaceWith(quizB(b,sec));updScores()}},'↻ 重考'),res);
+  return el;}
+function vocab(b,sec){var el=h('div',{class:'block'});el.append(h('h3',null,b.title||'重點單字',h('span',{class:'tag'},'點 🔊 聽發音｜虛線框＝參考單字')));
+  var g=h('div',{class:'vgrid'});b.w.forEach(function(w){g.append(h('div',{class:'vc'+(w[3]?' ref':'')},sayBtn(w[0]),h('div',null,h('b',null,vowelize(w[0])),' ',h('span',{class:'tag'},w[1]),h('div',{class:'zh'},w[2]))))});el.append(g);
+  var qa=h('div');BLK.push({id:b.id+'_m',sec:sec});BLK.push({id:b.id+'_s',sec:sec});
+  el.append(h('div',{style:'margin-top:8px'},h('button',{class:'btn',type:'button',onclick:function(){vq(b,qa,'m')}},'🎧 聽音選義'),h('button',{class:'btn ghost',type:'button',onclick:function(){vq(b,qa,'s')}},'✍️ 聽寫拼字'),h('span',{class:'bs',id:'bs_'+b.id+'_m'}),' ',h('span',{class:'bs',id:'bs_'+b.id+'_s'})),qa);return el;}
+function vq(b,qa,mode){qa.innerHTML='';var pool=b.w.filter(function(w){return !w[3]});var items=shuffle(pool).slice(0,Math.min(8,pool.length));var id=b.id+'_'+mode;var st={};
+  items.forEach(function(w,i){var d=h('div',{class:'q'});
+    if(mode==='m'){d.append(h('div',null,h('b',null,(i+1)+'. '),sayBtn(w[0]),' 聽到的是哪個意思？'));var opts=h('div',{class:'opts'});var ch=shuffle([w].concat(shuffle(pool.filter(function(x){return x!==w})).slice(0,3)));var fb=h('div',{class:'fb'});
+      ch.forEach(function(c){var o=h('button',{class:'opt',type:'button'},c[2]);o.onclick=function(){if(st[i]!==undefined)return;st[i]=(c===w);o.classList.add(st[i]?'ok':'bad');fb.className='fb '+(st[i]?'ok':'bad');fb.textContent=(st[i]?'✔ 答對！':'✘ 正解：')+' '+w[0]+'＝'+w[2];rec(id,cnt(st),items.length)};opts.append(o)});d.append(opts,fb);}
+    else{var inp=h('input',{class:'blank',autocomplete:'off',autocapitalize:'off',spellcheck:'false'});var fb2=h('span',{class:'fb'});
+      var chk=function(){if(st[i]!==undefined)return;st[i]=okAns(inp.value,w[0]);inp.classList.add(st[i]?'ok':'bad');inp.disabled=true;fb2.className='fb '+(st[i]?'ok':'bad');fb2.textContent=st[i]?' ✔':' ✘ '+w[0];rec(id,cnt(st),items.length)};
+      inp.onkeydown=function(e){if(e.key==='Enter')chk()};
+      d.append(h('div',null,h('b',null,(i+1)+'. '),sayBtn(w[0]),' ',h('span',{class:'zhl'},'（'+w[2]+'）'),' ',inp,' ',h('button',{class:'say',type:'button',onclick:chk},'✔'),fb2));}
+    qa.append(d);});
+  if(mode==='m')speak(items[0][0]);}
+function cnt(st){var c=0;for(var k in st)if(st[k])c++;return c;}
+
+function phrases(b){var el=h('div',{class:'block'});el.append(h('h3',null,b.title||'學習焦點 · 片語句型',h('span',{class:'tag'},'例句為學習單自編，可對照雜誌原句')));
+  b.p.forEach(function(p){el.append(h('div',{class:'ph'},sayBtn(p[2]),h('div',null,h('b',null,p[0]),'　',h('span',null,p[1]),h('div',null,h('i',null,p[2])),p[3]?h('div',{class:'zhl'},p[3]):null)))});return el;}
+
+function mcq(b,sec){var el=blockShell(b,sec,b.title||'閱讀理解',b.tag);if(b.pre)el.append(h('div',{class:'zhl',style:'margin-bottom:4px'},b.pre));var st={};
+  b.q.forEach(function(q,i){var d=h('div',{class:'q'});d.append(h('div',null,h('b',null,(i+1)+'. '),q.q,' ',/[a-z]/i.test(q.q)&&!q.nosay?sayBtn(q.q):null));
+    var opts=h('div',{class:'opts'});var fb=h('div',{class:'fb'});var bt={};var idx=q.o.map(function(_,k){return k});if(!q.fix)idx=shuffle(idx);
+    idx.forEach(function(k){var o=h('button',{class:'opt',type:'button'},q.o[k]);bt[k]=o;o.onclick=function(){if(st[i]!==undefined)return;st[i]=(k===q.a);o.classList.add(st[i]?'ok':'bad');if(!st[i])bt[q.a].classList.add('ok');fb.className='fb '+(st[i]?'ok':'bad');fb.textContent=(st[i]?'✔ 答對了！':'✘ 再想想，正解已標示。')+(q.ex?'　'+q.ex:'');rec(b.id,cnt(st),b.q.length)};opts.append(o)});
+    d.append(opts,fb);el.append(d)});el.append(resetBtn(b,sec,el));return el;}
+function tf(b,sec){var nb={id:b.id,title:b.title||'是非題',tag:b.tag||'T / F',pre:b.pre,q:b.q.map(function(x){return {q:x[0],o:['T 對','F 錯'],a:x[1]?0:1,ex:x[2]||'',fix:true}})};nb.t='mcq';return mcq(nb,sec);}
+
+function cloze(b,sec){var el=blockShell(b,sec,b.title||'語塊填空',b.tag||'自己打出來');el.append(h('div',{class:'bank'},shuffle(b.bank).map(function(w){return h('span',null,w)})));var ins=[];
+  b.q.forEach(function(q,i){var parts=q[0].split('___');var inp=h('input',{class:'blank',autocomplete:'off',autocapitalize:'off',spellcheck:'false'});ins.push(inp);
+    inp.onkeydown=function(e){if(e.key==='Enter'){var n=ins[i+1];if(n)n.focus();}};
+    el.append(h('div',{class:'q'},h('b',null,(i+1)+'. '),parts[0],inp,parts[1]||'',' ',sayBtn(parts[0]+(q[1].split('|')[0])+(parts[1]||'')),q[2]?h('div',{class:'zhl'},q[2]):null))});
+  var res=h('div',{class:'fb'});
+  el.append(h('button',{class:'btn',type:'button',onclick:function(){var c=0;ins.forEach(function(inp,i){var ok=okAns(inp.value,b.q[i][1]);inp.classList.remove('ok','bad');inp.classList.add(ok?'ok':'bad');if(ok)c++;});res.className='fb '+(c===ins.length?'ok':'bad');res.textContent='答對 '+c+' / '+ins.length+(c<ins.length?'　（紅線再改改看，或按「看答案」）':'　太棒了！');rec(b.id,c,ins.length)}},'✔ 檢查答案'),
+    h('button',{class:'btn ghost',type:'button',onclick:function(){ins.forEach(function(inp,i){if(!inp.classList.contains('ok')){inp.value=b.q[i][1].split('|')[0];inp.classList.remove('bad')}})}},'👀 看答案'),resetBtn(b,sec,el),res);return el;}
+
+function order(b,sec){var el=blockShell(b,sec,b.title||'排出正確順序',b.tag||'依序點選');if(b.pre)el.append(h('div',{class:'zhl'},b.pre));
+  var pool=h('div',{class:'chips'}),ans=h('div',{class:'chips'}),fb=h('div',{class:'fb'});var picked=[];
+  function draw(){pool.innerHTML='';ans.innerHTML='';shuf.forEach(function(it){if(picked.indexOf(it)<0)pool.append(h('button',{class:'chip',type:'button',onclick:function(){picked.push(it);draw()}},it))});
+    picked.forEach(function(it,k){ans.append(h('button',{class:'chip',type:'button',onclick:function(){picked.splice(k,1);draw()}},(k+1)+'. '+it))});}
+  var shuf=shuffle(b.items);draw();
+  el.append(h('div',{class:'zhl'},'① 從這裡點選：'),pool,h('div',{class:'zhl'},'② 你的順序（點一下可退回）：'),ans,
+    h('button',{class:'btn',type:'button',onclick:function(){if(picked.length<b.items.length){fb.className='fb bad';fb.textContent='還有項目沒排喔！';return}var c=0;Array.prototype.forEach.call(ans.children,function(ch,k){var ok=picked[k]===b.items[k];if(ok)c++;ch.classList.add(ok?'ok':'bad')});fb.className='fb '+(c===b.items.length?'ok':'bad');fb.textContent='位置正確 '+c+' / '+b.items.length;rec(b.id,c,b.items.length)}},'✔ 檢查'),
+    h('button',{class:'btn ghost',type:'button',onclick:function(){picked=b.items.slice();draw()}},'👀 看正解'),resetBtn(b,sec,el),fb);return el;}
+
+function sortB(b,sec){var el=blockShell(b,sec,b.title||'分類',b.tag);if(b.pre)el.append(h('div',{class:'zhl'},b.pre));var st={};
+  shuffle(b.items.map(function(x,i){return i})).forEach(function(i){var it=b.items[i];var row=h('div',{class:'srow'},h('span',{class:'t'},it[0],' ',/[a-z]/i.test(it[0])?sayBtn(it[0]):null));
+    b.cats.forEach(function(c,k){var o=h('button',{class:'opt',type:'button'},c);o.onclick=function(){if(st[i]!==undefined)return;st[i]=(k===it[1]);o.classList.add(st[i]?'ok':'bad');if(!st[i])row.children[it[1]+1].classList.add('ok');rec(b.id,cnt(st),b.items.length)};row.append(o)});el.append(row)});
+  el.append(resetBtn(b,sec,el));return el;}
+
+function typeB(b,sec){var el=blockShell(b,sec,b.title||'打字練習',b.tag);if(b.pre)el.append(h('div',{class:'zhl'},b.pre));var list=b.pick?shuffle(b.q).slice(0,b.pick):b.q;var ins=[];
+  list.forEach(function(q,i){var inp=h('input',{autocomplete:'off',autocapitalize:'off',spellcheck:'false',placeholder:b.ph||'type here'});ins.push(inp);var m=h('span',{class:'zhl'});
+    inp.onkeydown=function(e){if(e.key==='Enter'){var n=ins[i+1];if(n)n.focus()}};el.append(h('div',{class:'trow'},h('span',{class:'p'},h('b',null,(i+1)+'. '),q[0],q[2]?h('span',{class:'zhl'},'　（'+q[2]+'）'):null),inp,m));inp._m=m;});
+  var fb=h('div',{class:'fb'});
+  el.append(h('button',{class:'btn',type:'button',onclick:function(){var c=0;ins.forEach(function(inp,i){var ok=okAns(inp.value,list[i][1]);inp.classList.remove('ok','bad');inp.classList.add(ok?'ok':'bad');if(ok)c++;inp._m.textContent=ok?'✔':'參考：'+list[i][1].split('|')[0];if(ok&&b.say){var aw=list[i][1].split('|')[0];speak(b.full?list[i][0].replace('___',aw):aw)}});fb.className='fb '+(c===ins.length?'ok':'bad');fb.textContent='答對 '+c+' / '+ins.length;rec(b.id,c,ins.length)}},'✔ 檢查'),
+    b.pick?h('button',{class:'btn ghost',type:'button',onclick:function(){delete RES[b.id];store.set('res',RES);BLK=BLK.filter(function(x){return x.id!==b.id});el.replaceWith(make(b,sec));updScores()}},'🔀 換一組'):resetBtn(b,sec,el),fb);return el;}
+
+function write(b){var el=h('div',{class:'block'});el.append(h('h3',null,'✍️ ',b.title||'寫作輸出',h('span',{class:'tag'},'自動儲存')));
+  el.append(h('div',null,b.prompt));if(b.hints)el.append(h('div',{class:'hints'},b.hints.map(function(x){return h('span',null,x)})));
+  var ta=h('textarea',{placeholder:'在這裡用英文寫……'});ta.value=store.get('w_'+b.id,'');var wc=h('span',{class:'zhl'});
+  function upd(){var n=(ta.value.match(/[A-Za-z']+/g)||[]).length;wc.textContent='目前 '+n+' 個英文字'+(b.min?'（目標 '+b.min+' 字以上）':'');}
+  ta.oninput=function(){store.set('w_'+b.id,ta.value);upd()};upd();
+  var md=h('div',{class:'model',style:'display:none'},b.model||'');
+  el.append(ta,wc,h('div',null,h('button',{class:'btn ghost',type:'button',onclick:function(){if(ta.value.trim())speak(ta.value)}},'🔊 朗讀我寫的'),recorder(),b.model?h('button',{class:'btn ghost',type:'button',onclick:function(){md.style.display=md.style.display==='none'?'block':'none'}},'💡 參考範文'):null),md);return el;}
+
+function speakB(b){var el=h('div',{class:'block'});el.append(h('h3',null,'🗣️ ',b.title||'開口說',h('span',{class:'tag'},'先聽 → 跟讀 → 錄音自評')));if(b.prompt)el.append(h('div',null,b.prompt));
+  b.lines.forEach(function(l){el.append(h('div',{class:'ph'},sayBtn(l[0]),h('div',null,h('i',null,l[0]),l[1]?h('div',{class:'zhl'},l[1]):null)))});el.append(recorder());return el;}
+function noteB(b){return h('div',{class:'block'},h('div',{class:'note',html:b.html}));}
+
+/* ========== 內容資料 ========== */
+function bars(lbl,a){var ns='http://www.w3.org/2000/svg',s=document.createElementNS(ns,'svg');s.setAttribute('viewBox','0 0 92 60');s.setAttribute('width','92');s.setAttribute('height','60');var c=['#3b6fc4','#d9682b','#8a8f99','#e6b422'];
+  a.forEach(function(v,i){var r=document.createElementNS(ns,'rect');var hh=v/35*48;r.setAttribute('x',8+i*20);r.setAttribute('y',54-hh);r.setAttribute('width',14);r.setAttribute('height',hh);r.setAttribute('fill',c[i]);s.appendChild(r)});
+  var l=document.createElementNS(ns,'line');l.setAttribute('x1',2);l.setAttribute('x2',90);l.setAttribute('y1',54);l.setAttribute('y2',54);l.setAttribute('stroke','#888');s.appendChild(l);
+  return h('span',{style:'display:inline-flex;align-items:center;gap:6px'},h('b',null,lbl),s);}
+var CARDS=[
+["I ___ a table at your favorite restaurant.","booked","book 預訂"],["Rob gets cash back from his ___.","credit card","信用卡"],["You forgot to sign the bottom of the ___.","form","表格"],["Trevor often ___ his brother's bike.","borrows","borrow 借來"],
+["The top ___ is a swimming pool.","floor","樓層"],["Workers must ___ the building through the back door.","enter","進入"],["How do you get this machine to ___?","work","運作"],["The teacher is giving everyone ___ time to finish the report.","extra","額外的"],
+["What did the ___ say?","note","通知；短訊"],["Ivan will ___ everything for us.","arrange","安排"],["The bus goes ___ to the train station.","straight","直接地"],["The ___ was full of foreign travelers.","airport","機場"],
+["There will be rain at the ___ of the week.","start","開始"],["Teacher's Day isn't a ___ in the US.","holiday","假日"],["How long is the baseball ___?","season","季；季節"],["The vendor gave me a ___ on this bag.","deal","划算的價格"],
+["The store ___ the price of its drinks.","raised","raise 提高"],["The weather is ___ hotter today.","even","更；甚至"],["The boy got everyone's ___.","attention","注意；關注"],["James took out his ___ to pay.","wallet","皮夾"],
+["The trip is a ___ for the kids.","surprise","驚喜"],["I'll be there in a ___.","second","片刻"],["Sharon parked her ___ next to mine.","scooter","機車"],["The flowers are ___. Thank you.","lovely","漂亮的"],
+["Don't do anything ___.","stupid","愚蠢的"],["Mia and Ivan are on the same ___.","team","團隊"],["Tim ___ the accident to the police.","reported","report 通報"],["The ___ lets her workers leave early before long weekends.","boss","老闆"],
+["Did you read my ___?","email","電子郵件"],["That ___ teaches computer skills.","program","課程"],["___ students will use the new system.","Future","未來的"],["The ___ fixed the problem in an hour.","engineer","工程師"],
+["What's the story ___ this photo?","behind","在……背後"],["Lisa is at a ___ with her customer.","meeting","會面；會議"],["This ___ makes the job much easier.","tool","工具"],["Fred is taking a class to learn the latest computer ___.","skills","skill 技能"],
+["Brian ___ his spending in half.","cut","減少"],["Please put your food ___ in this bin.","waste","廢棄物"],["Curt showed ___ in the club and wanted to join.","interest","興趣"],["Here is a helpful ___ for saving money.","tip","訣竅"],
+["Can I take a ___ look at your answers?","quick","快速的"],["We went out for a ___ after work.","bite","少量食物"],["When will Sabrina ___ to Taipei?","return","回到"],["One of your ___ as a student is to study.","duties","duty 職責"],
+["It is very quiet inside the ___.","church","教堂"],["Our next ___ is the Tokyo Skytree.","stop","停靠站"],["Adam will take us to a few ___ in the city.","sights","sight 景點"],["We met many ___ people at the event.","interesting","有趣的"],
+["Something bad ___ at work today.","happened","happen 發生"],["Can you ___ the problem to me?","explain","解釋"],["Renee works as a truck ___.","driver","司機"],["Scott ___ to his study group at the library.","hurried","hurry 急忙趕到"],
+["The ___ asked me to sign for the package.","mailman","郵差"],["I got a ___ from a friend back home.","letter","信件"],["Sarah's ___ looks a lot like her.","daughter","女兒"],["My ___ is my best friend.","husband","丈夫"],
+["The ___ man works at a hospital.","young","年輕的"],["Chris asked Emma to ___ him.","marry","嫁；娶"],["You can't ___ all of the people.","please","使高興"],["Leroy was ___ when his son didn't come home yesterday.","worried","擔心的"],
+["The big earthquake caused many ___.","deaths","death 死亡"],["Nothing ___ Terry. He knows and experienced a lot.","surprises","surprise 使驚訝"],["The ___ of Veronica's show is November 21.","date","日期"],["Will you ever ___ me?","forgive","原諒"],
+["It isn't polite to point your ___ at someone.","finger","手指"],["The class teaches kids the right way to ___.","type","打字"],["Nothing happens when I push the button on the ___.","mouse","滑鼠"],["Do not ___ these vases.","touch","觸碰"],
+["Alex has a really low ___.","voice","聲音"],["The ___ is looking for a secretary.","company","公司"],["I can't ___ Tim from Tom.","tell","分辨"],["Bill can ___ other people's way of speaking.","copy","模仿"],
+["We always put ___ first.","safety","安全"],["I'm tired, so I will ___ go to bed early.","probably","可能；大概"],["Smith is a very ___ last name in the US.","common","常見的"],["I need a ___ lock for the door.","strong","牢靠的"],
+["The top ___ is a trip to Europe.","prize","獎品"],["Smoke is often a ___ of fire.","sign","徵兆"],["The shy boy didn't talk to ___ in the classroom.","anyone","任何人"],["To be ___, I told you a white lie.","honest","誠實的"],
+["Nobody ___ Heidi's new haircut.","noticed","notice 注意"],["Lucy gets along with most of her ___.","classmates","classmate 同學"],["Everyone on the team tried to consider the problem from all ___.","angles","angle 角度"],["Bill's ___ wasn't on his work.","focus","焦點"]];
+var DATA=[
+{id:'home',name:'🏠 首頁',color:'--w0'},
+{id:'w1',name:'第一週',color:'--w1',band:['第一週　Units 1–2','11/2–11/6 ｜ 本月焦點：飯店大廳大小事 ＋ 玩味生活：不消費日'],units:[
+ {h:'Unit 1 本月焦點 · 圖解字典 Hotel Lobby',s:'pp.10–11 飯店大廳',b:[
+  {t:'vocab',id:'u1pic',title:'圖解字典 12 字（對照 p.10–11 圖中號碼）',w:[['shuttle bus','n.','① 接駁巴士'],['doorman','n.','② 門房；迎賓員'],['luggage cart','n.','③ 行李推車'],['hallway','n.','④ 走廊；走道'],['bellhop','n.','⑤ 行李員'],['lobby','n.','⑥ 大廳'],['gift shop','n.','⑦ 禮品店'],['guest','n.','⑧ 客人'],['key card','n.','⑨ 房卡'],['front desk clerk','n.','⑩ 櫃檯人員'],['elevator','n.','⑪ 電梯'],['vending machine','n.','⑫ 販賣機']]},
+  {t:'mcq',id:'u1who',title:'飯店裡找誰？去哪裡？',tag:'情境判斷',q:[
+   {q:'You have three big suitcases. Who can help you carry them to your room?',o:['A bellhop','A guest','A vending machine','A gift shop'],a:0},
+   {q:'You need a drink at midnight. Where can you get one in the lobby?',o:['From the vending machine','From the elevator','From the hallway','From the key card'],a:0},
+   {q:'You want to go to the eighth floor. What do you take?',o:['The elevator','The shuttle bus','The luggage cart','The front desk'],a:0},
+   {q:'You want to check in. Who do you talk to?',o:['The front desk clerk','The doorman','Another guest','The bellhop'],a:0},
+   {q:'You need to get to the airport. What can the hotel arrange for you?',o:['A shuttle bus','A key card','A gift shop','A hallway'],a:0}]}]},
+ {h:'Unit 1 實用對話 · Around a Hotel Lobby',s:'pp.12–14 ｜ Part A 辦入住 · Part B 搭電梯 · Part C 在大廳消磨時間',b:[
+  {t:'vocab',id:'u1w',w:[['book','v.','預訂'],['credit card','n.','信用卡'],['form','n.','表格'],['borrow','v.','借來'],['passport','n.','護照',1],['floor','n.','樓層'],['enter','v.','進入'],['work','v.','運作'],['extra','adj.','額外的'],['tap','v.','輕觸',1],['sensor','n.','感應器',1],['note','n.','通知；短訊'],['arrange','v.','安排'],['straight','adv.','直接地'],['airport','n.','機場'],['spoil','v.','破壞；毀掉',1],['souvenir','n.','紀念品',1]]},
+  {t:'phrases',id:'u1p',p:[['check in','辦理入住（↔ check out 退房）','We can check in at the hotel after three o\'clock.','下午三點後可以辦理入住。'],['May I have ...?','請問可以提供……嗎？（比 can 更有禮貌）','May I have your phone number, please?'],['fill out','填寫（可分片語動詞）','Please fill out this form and give it back to me.'],['A shows B to (place)','A 帶 B 前往某處','The teacher showed us to the music room.'],['..., either.','……也（不）（否定句）','Tom can\'t swim. His brother can\'t swim, either.'],['push a button','按下按鈕','Push the green button to open the door.'],['hang out','閒晃；消磨時間（hang-hung-hung）','We often hang out at the park after school.'],['look forward to + N / V-ing','期待……（to 是介系詞）','I\'m looking forward to the school trip.'],['pick up','購買；買（口語）','Can you pick up some bread on your way home?']]},
+  {t:'mcq',id:'u1r',title:'對話理解 Part A–C',tag:'看雜誌 pp.12–14 作答',q:[
+   {q:'Part A: Why is Rick talking to the front desk clerk?',o:['He wants to check in.','He wants to check out.','He lost his key card.','He wants to buy souvenirs.'],a:0,ex:'Rick 訂了房，帶家人來辦理入住。'},
+   {q:'Part A: What does the clerk ask Rick for after his name?',o:['His passport and credit card','His date of birth','His key card','His luggage cart'],a:0},
+   {q:'Part A: Who will take care of the family\'s things?',o:['A bellhop','The doorman','Rick\'s son','The clerk'],a:0,ex:'門房推來行李，櫃檯說行李員會處理。'},
+   {q:'Part A: What does Rick borrow from the clerk?',o:['A pen','A form','A map','A credit card'],a:0,ex:'而且櫃檯說筆可以送他。'},
+   {q:'Part B: What floor is Sharon\'s room on?',o:['The eighth floor','The top floor','The first floor','The eighteenth floor'],a:0},
+   {q:'Part B: What must Sharon do before she pushes the button for her floor?',o:['Tap her key card on a sensor','Show her passport','Call the front desk','Walk back to the lobby'],a:0},
+   {q:'Part B: How does Sharon feel about the extra step?',o:['It makes her feel safe.','It makes her angry.','It is too hard for her.','It is a waste of time.'],a:0},
+   {q:'Part C: When will Beverly and Wilson\'s table be ready?',o:['In an hour','Right now','Tomorrow morning','In ten minutes'],a:0},
+   {q:'Part C: Why doesn\'t Beverly want anything from the vending machine?',o:['She doesn\'t want to spoil her dinner.','The machine is broken.','She has no money.','She is not hungry at all.'],a:0},
+   {q:'Part C: What did Wilson arrange for tomorrow?',o:['A shuttle bus to the airport','A table at a restaurant','A new room','A city tour'],a:0},
+   {q:'Part C: Where does Wilson go at the end?',o:['To the hotel gift shop','To the airport','To the restaurant','To his room'],a:0}]},
+  {t:'cloze',id:'u1c',bank:['check in','fill out','either','Push','hang out','looking forward to','pick up','showed'],q:[
+   ['What time can we ___ at the hotel?','check in','我們幾點可以辦理入住？'],['Please ___ this card and give it back to me.','fill out','請填好這張卡片再交給我。'],['Ben can\'t swim. Amy can\'t swim, ___.','either','Ben 不會游泳，Amy 也不會。'],['___ the button for the fifth floor, please.','Push','請按五樓的按鈕。'],['Let\'s ___ in the lobby before dinner.','hang out','晚餐前我們在大廳晃晃吧。'],['I\'m ___ seeing my grandparents this weekend.','looking forward to','我很期待這週末見到爺爺奶奶。'],['I want to ___ some souvenirs for my friends.','pick up','我想幫朋友買些紀念品。'],['The bellhop ___ us to our room.','showed','行李員帶我們到房間。']]},
+  {t:'speak',id:'u1s',title:'角色扮演：我是房客',prompt:'先聽、跟讀，再錄下你的版本（可換成自己的名字和樓層）。',lines:[['Hi, I booked a room for my family. We\'d like to check in.','嗨，我幫家人訂了一間房，我們想辦理入住。'],['My name is Amy Lin. Here\'s my passport.','我叫林艾咪，這是我的護照。'],['Can I borrow your pen, please?','可以借我你的筆嗎？'],['What floor is our room on?','我們的房間在幾樓？'],['Do I need to tap my key card on the sensor?','我需要把房卡刷在感應器上嗎？']]},
+  {t:'write',id:'u1wr',title:'換你當櫃檯人員',prompt:'寫 4 句話接待一位要入住的客人。至少用到 2 個本課語塊。',hints:['May I have ...?','fill out','show (sb) to ...','floor','key card'],min:30,model:'Welcome to Sunny Hotel! May I have your name, please? Please fill out this form. Your room is on the fifth floor. You need your key card to use the elevator, and the bellhop will show you to your room.'}]},
+ {h:'Unit 2 玩味生活 · Buy Nothing Day 不消費日',s:'pp.16–18 ｜ 公民意識',b:[
+  {t:'vocab',id:'u2w',w:[['start','n./v.','開始；創立'],['holiday','n.','假日；假期'],['season','n.','季；季節'],['deal','n.','划算的價格'],['Thanksgiving','n.','感恩節',1],['Black Friday','n.','黑色星期五',1],['artist','n.','藝術家',1],['raise','v.','提高；增加'],['even','adv.','更；甚至'],['attention','n.','注意；關注'],['wallet','n.','皮夾；錢包'],['recycle','v.','回收',1]]},
+  {t:'phrases',id:'u2p',p:[['know A as B','知道 A 為 B（as＝作為）','Many people know Taipei 101 as a famous building.'],['(sb) agrees not to + V','（某人）同意不（做某事）—注意 not 的位置','We agree not to use our phones at dinner.'],['not + V + anymore','不再（做某事）','I don\'t drink soda anymore.'],['A moves to B','A 移到、改到 B','The meeting moved to Friday afternoon.'],['stay away from','遠離；避開','You should stay away from that dog. It bites.'],['make repairs','修理（repair 為名詞）','My dad likes to make repairs on old bikes.']]},
+  {t:'tf',id:'u2tf',title:'課文是非題',pre:'看 pp.16–17 判斷對錯。',q:[['Black Friday is the day after Thanksgiving.',true],['Ted Dave, a Canadian artist, started Buy Nothing Day.',true],['Buy Nothing Day started in 1997.',false,'1992 年 9 月創立，1997 年才移到黑色星期五。'],['On Buy Nothing Day, people try not to spend any money for 24 hours.',true],['On Buy Nothing Day, people go out and look for great deals.',false,'那是黑色星期五；不消費日是遠離錢包。'],['Fixing old things and giving things to others are ways to take part.',true]]},
+  {t:'mcq',id:'u2po',title:'延伸活動：讀海報',tag:'p.18 海報',q:[{q:'Where is the Buy Nothing Day Celebration?',o:['At Maple Center','At a department store','At a Repair Café','At a school gym'],a:0},{q:'What time is the special talk?',o:['2 p.m.','2 a.m.','12 noon','4 p.m.'],a:0},{q:'Which activity is NOT on the poster?',o:['Shopping for holiday deals','Fixing old things','Sharing things with others','Enjoying outdoor games'],a:0},{q:'What does the poster ask people to leave at home?',o:['Their wallets','Their talents','Their families','Their open minds'],a:0}]},
+  {t:'cloze',id:'u2c',bank:['as','agree not to','anymore','moved to','stay away from','make repairs','attention','deal'],q:[['Many people know the day after Thanksgiving ___ Black Friday.','as'],['We ___ use our phones at dinner.','agree not to'],['I don\'t eat fried chicken ___.','anymore'],['The game ___ Sunday morning because of the rain.','moved to'],['Please ___ the hot stove!','stay away from'],['The workers will ___ to the old bridge.','make repairs'],['The funny video got a lot of ___.','attention'],['These shoes were half price. What a great ___!','deal']]},
+  {t:'write',id:'u2wr',title:'我的不消費日計畫',prompt:'如果 11/27 是你的不消費日，你會做哪些事？寫 4 句。',hints:['I agree not to ...','I won\'t ... anymore.','I will stay away from ...','make repairs','spend time with ...'],min:30,model:'On Buy Nothing Day, I agree not to spend any money. I will stay away from online shops. I will make repairs on my old bike and play basketball with my friends. I don\'t want to buy things I don\'t need anymore.'}]}
+]},
+{id:'w2',name:'第二週',color:'--w2',band:['第二週　Units 3–4','11/9–11/13 ｜ 活用 ABC：用英語表達感受 ＋ 世界好望角：修理咖啡館'],units:[
+ {h:'Unit 3 活用 ABC · Sharing Feelings 用英語表達感受',s:'pp.19–23 ｜ 溝通表達',b:[
+  {t:'vocab',id:'u3e',title:'常見的情緒形容詞 15 個',w:[['happy','adj.','😊 快樂的'],['glad','adj.','😃 開心的'],['sad','adj.','😢 難過的'],['angry','adj.','😠 生氣的'],['mad','adj.','😡 憤怒的'],['tired','adj.','😩 疲累的'],['bored','adj.','😑 無聊的'],['excited','adj.','🤩 興奮的'],['worried','adj.','😟 擔心的'],['surprised','adj.','😮 驚訝的'],['scared','adj.','😱 害怕的'],['lonely','adj.','🥺 孤單的'],['nervous','adj.','😬 緊張的'],['grateful','adj.','🙏 感激的'],['disappointed','adj.','😞 失望的']]},
+  {t:'mcq',id:'u3f',title:'這時候的心情是？',tag:'情境選字',q:[{q:'You have a big test tomorrow, and your hands are shaking. You feel ___.',o:['nervous','grateful','bored','glad'],a:0},{q:'Your friend helped you carry your heavy bag home. You feel ___.',o:['grateful','scared','lonely','mad'],a:0},{q:'You waited months for the concert, but it was canceled. You feel ___.',o:['disappointed','excited','surprised','glad'],a:0},{q:'There is nothing to do on a rainy afternoon. You feel ___.',o:['bored','grateful','nervous','excited'],a:0},{q:'You hear a strange noise in the dark. You feel ___.',o:['scared','happy','bored','grateful'],a:0},{q:'Your best friend moved away, and you have no one to talk to. You feel ___.',o:['lonely','excited','glad','surprised'],a:0},{q:'Your team just won the final game! You feel ___.',o:['excited','tired','sad','worried'],a:0}]},
+  {t:'mcq',id:'u3x',title:'實用句：該說哪一句？',tag:'p.19 實用句',q:[{q:'Your friend looks very sad. What can you say?',o:['Why the long face?','That\'s a relief.','I\'m so happy now.','Of course!'],a:0},{q:'You found your lost phone. What can you say?',o:['That\'s a relief.','Why the long face?','I\'m afraid to hear the news.','I\'m so bored.'],a:0},{q:'You want to know how your classmate feels. What can you ask?',o:['How are you feeling?','How old are you?','What time is it?','Where are you from?'],a:0},{q:'Your team plays in the final tomorrow. You say:',o:['I feel excited about the game.','That\'s a relief.','I\'m afraid to hear the news.','Why the long face?'],a:0}]},
+  {t:'vocab',id:'u3w',title:'Part A–C 重點單字',w:[['surprise','n.','驚喜'],['second','n.','片刻；瞬間'],['scooter','n.','機車；速克達'],['lovely','adj.','漂亮的；可愛的'],['garage','n.','車庫',1],['stupid','adj.','愚蠢的'],['team','n.','團隊'],['report','v.','報告；通報'],['boss','n.','老闆；上司'],['project','n.','專案',1],['email','n.','電子郵件'],['program','n.','課程'],['future','adj.','未來的'],['engineer','n.','工程師'],['negative','adj.','悲觀的',1],['scholarship','n.','獎學金',1]]},
+  {t:'phrases',id:'u3p',p:[['What\'s up?','怎麼了？什麼事？（口語）','What\'s up? You look worried.'],['take (sth) hard','難以接受（某事）','She took the bad news hard.'],['try (one\'s) best','盡（某人的）全力','I will try my best to finish the race.'],['stop + V-ing','停止、不再（做某事）（≠ stop to V 停下來去做）','He stopped eating junk food last year.'],['(sb) takes credit for (sth)','把（某事物）歸功於自己','Don\'t take credit for other people\'s ideas.'],['tell on (sb)','打（某人）小報告','My little brother told on me to Mom.'],['get in','錄取；考上','She studied hard and got in.'],['do + V','確實有（做某事）（強調）','I do want to help you. I\'m not joking.'],['(sb) can\'t do anything about (sth)','（某人）對（某事）無能為力','We can\'t do anything about the weather.']]},
+  {t:'mcq',id:'u3r',title:'對話理解 Part A–C',tag:'看雜誌 pp.20–22 作答',q:[{q:'Part A: Why was Miriam sad yesterday?',o:['She got bad news about her scooter.','She failed a test.','Her dad was angry with her.','She lost her phone.'],a:0},{q:'Part A: What did Miriam\'s parents do?',o:['They tried their best to get her a new scooter.','They told her to walk to school.','They sold the garage.','They fixed her old bike.'],a:0},{q:'Part A: How does Miriam feel at the end?',o:['Surprised and thankful','Bored and tired','Scared and lonely','Angry and mad'],a:0},{q:'Part B: Why is Scarlet mad at Colin?',o:['He took credit for her work on a team project.','He was late for work.','He told on her to the boss.','He broke her computer.'],a:0},{q:'Part B: What does Johnson decide to do?',o:['He won\'t say anything.','He will report Colin to the boss.','He will talk to Colin.','He will leave the team.'],a:0},{q:'Part C: Did Mindy get in to the program?',o:['Yes, but she can\'t go because of money.','No, she failed the test.','No, the program is closed.','Yes, and she is leaving tomorrow.'],a:0},{q:'Part C: What idea does Terance give Mindy?',o:['Look for a scholarship.','Find a new program.','Ask the boss for money.','Stop thinking about England.'],a:0}]},
+  {t:'cloze',id:'u3c',bank:['What\'s up','try my best','stopped eating','take credit for','tell on','got in','can\'t do anything about','do'],q:[['A: ___? B: I need your help with my homework.','What\'s up'],['I will ___ to get good grades this year.','try my best'],['He ___ junk food, and now he feels healthier.','stopped eating'],['You shouldn\'t ___ your classmate\'s work.','take credit for'],['Please don\'t ___ me to the teacher!','tell on'],['After a lot of hard work, she ___ to her dream school.','got in'],['We ___ the rain, so let\'s just have fun inside.','can\'t do anything about'],['I ___ know the answer. Let me tell you.','do']]},
+  {t:'speak',id:'u3s',title:'說說你今天的心情',prompt:'聽範例後，用「I feel ___ because ___.」錄下你自己的版本。',lines:[['How are you feeling today?','你今天心情如何？'],['I feel excited because my favorite band has a concert this weekend.','範例：我很興奮，因為……'],['I feel a little tired because I stayed up late last night.','範例：我有點累，因為……']]},
+  {t:'write',id:'u3wr',title:'寫一段 4–6 行的小對話',prompt:'A 看到朋友 B 不開心，用本課實用句開場，B 說明原因與心情，A 安慰或給建議。',hints:['Why the long face?','I feel ...','That\'s too bad.','Don\'t be so negative.','try your best','That\'s a relief.'],min:35,model:'A: Why the long face?\nB: I lost my new bike. I feel so sad.\nA: That\'s too bad. Did you report it to the police?\nB: Not yet. I can\'t do anything about it now.\nA: Don\'t be so negative. Let\'s try our best to find it together.'}]},
+ {h:'Unit 4 世界好望角 · The Repair Café 修理咖啡館',s:'pp.24–25 ｜ 創新應變',b:[
+  {t:'vocab',id:'u4w',w:[['behind','prep.','在……背後、後面'],['meeting','n.','會面；會議'],['tool','n.','工具'],['skill','n.','技能'],['broken','adj.','故障的；損壞的',1],['material','n.','材料',1],['cut','v.','減少（cut-cut-cut）'],['waste','n.','廢棄物'],['interest','n.','興趣'],['tip','n.','訣竅；技巧'],['site','n.','網站',1]]},
+  {t:'phrases',id:'u4p',p:[['throw away','丟棄（可分片語動詞）','Don\'t throw away that chair. We can fix it.'],['A is all about B','A 的重點在於 B','This club is all about helping others.'],['lend a hand','幫忙；伸出援手（lend-lent-lent）','Can you lend me a hand with this box?'],['set up','設立（set 三態同形）','Our class set up a book corner last year.'],['be able to + V','能夠（做某事）≈ can','After lots of practice, he was able to ride a bike.'],['What\'s more, ...','再者；此外（多置於句首）','The park is big. What\'s more, it\'s free.']]},
+  {t:'tf',id:'u4tf',title:'課文是非題',pre:'看 pp.24–25 判斷對錯。',q:[['Repair Cafés help old or broken things get a new life.',true],['People must pay to use the tools at Repair Cafés.',false,'修理咖啡館是免費的聚會場所。'],['People with different skills are there to help with repairs.',true],['Martine Postma set up the first Repair Café in a theater in Amsterdam.',true],['Postma wanted to make more waste around her.',false,'她是想減少（cut）身邊的廢棄物。'],['Today there are about 4,000 Repair Cafés in over 40 countries.',true]]},
+  {t:'cloze',id:'u4c',bank:['throw away','all about','lend a hand','set up','able to','What\'s more','waste','tips'],q:[['Don\'t ___ your old shoes. We can fix them.','throw away'],['This class is ___ learning by doing.','all about'],['The box is heavy. Can you ___?','lend a hand'],['Holly ___ a math study group last month.','set up'],['With the right tools, you\'ll be ___ fix it yourself.','able to'],['The app is useful. ___, it\'s free.','What\'s more'],['We should cut food ___ at school.','waste'],['My grandma gave me some ___ for cooking rice.','tips']]},
+  {t:'write',id:'u4wr',title:'把它修好，不要丟！',prompt:'寫一樣你（或家人）可以修好的東西：它怎麼了？誰能幫忙？修好有什麼好處？',hints:['is broken','throw away','lend a hand','be able to','What\'s more, ...'],min:30,model:'My old desk lamp is broken, but I don\'t want to throw it away. My uncle has the right tools, and he can lend me a hand. I think I\'ll be able to fix it in one afternoon. What\'s more, it will cut waste at home.'}]}
+]},
+{id:'w3',name:'第三週',color:'--w3',band:['第三週　Units 5–6','11/16–11/20 ｜ 文法補給站：過去簡單式 ＋ 短篇故事集：〈遺失的郵件〉'],units:[
+ {h:'Unit 5 文法補給站 · 過去簡單式',s:'pp.28–29 ｜ 句型、使用時機、動詞變化',b:[
+  {t:'note',html:'<b>一句話記住：</b>過去簡單式用來說<b>過去的動作、事實、習慣、狀態</b>。<br>be 動詞 → <b>was / were</b>（否定 wasn\'t / weren\'t）；一般動詞 → <b>V-ed</b>（否定、疑問借 <b>did</b>，後面動詞<b>回到原形</b>）。'},
+  {t:'sort',id:'u5r',title:'規則動詞：它屬於哪一種加 ed 規則？',tag:'分類',cats:['直接加 ed','字尾 e 加 d','子音+y：去 y 加 ied','重複字尾再加 ed'],items:[['work',0],['help',0],['visit',0],['play',0],['use',1],['dance',1],['move',1],['love',1],['try',2],['study',2],['carry',2],['cry',2],['jog',3],['stop',3],['plan',3],['shop',3]],pre:'小提醒：play 是「母音＋y」，所以直接加 ed。'},
+  {t:'type',id:'u5irr',title:'不規則動詞：打出過去式',tag:'每組 12 題，可換組',pick:12,say:true,ph:'past tense',q:[['go','went'],['take','took'],['give','gave'],['sit','sat'],['wear','wore'],['swim','swam'],['find','found'],['buy','bought'],['get','got'],['have','had'],['tell','told'],['lose','lost'],['grow','grew'],['write','wrote'],['spend','spent'],['bring','brought'],['hurt','hurt'],['make','made'],['eat','ate'],['see','saw'],['drink','drank'],['fall','fell'],['leave','left'],['meet','met'],['teach','taught'],['put','put'],['say','said'],['run','ran'],['become','became'],['ride','rode'],['break','broke'],['stand','stood'],['sleep','slept'],['catch','caught'],['cost','cost'],['read','read']]},
+  {t:'mcq',id:'u5g',title:'句型選擇',tag:'was / were / did',q:[{q:'The roads ___ empty during the storm.',o:['were','was','did','are'],a:0},{q:'My cat ___ sick yesterday.',o:['was','were','did','is'],a:0},{q:'___ you at home last Sunday?',o:['Were','Was','Did','Do'],a:0},{q:'I ___ late for class today. I was on time!',o:['wasn\'t','weren\'t','didn\'t','don\'t'],a:0},{q:'A: ___ you finish your homework? B: Yes, I did.',o:['Did','Were','Was','Do'],a:0},{q:'She didn\'t ___ breakfast this morning.',o:['eat','ate','eats','eating'],a:0},{q:'We ___ soccer in the yard yesterday.',o:['played','play','plays','playing'],a:0},{q:'A: Did Ben miss the bus? B: Yes, he ___.',o:['did','was','does','missed'],a:0}]},
+  {t:'type',id:'u5t',title:'中翻英：用過去簡單式作答',tag:'自編練習（雜誌 p.29 Try it! 另附解答）',ph:'English sentence',q:[['我昨天沒有看電視。','I didn\'t watch TV yesterday.|I did not watch TV yesterday.'],['他上週末去了臺北。','He went to Taipei last weekend.'],['你昨晚幾點睡覺？','What time did you go to bed last night?|What time did you sleep last night?'],['那部電影很有趣。','The movie was interesting.|That movie was interesting.'],['我們在公園遇見了老師。','We met our teacher in the park.|We met the teacher in the park.'],['她以前每天騎腳踏車上學。','She rode a bike to school every day.|She rode her bike to school every day.']]}]},
+ {h:'Unit 5 對話 · How Was Your Trip? / What Happened?',s:'pp.30–31',b:[
+  {t:'vocab',id:'u5w',w:[['church','n.','教堂'],['stop','n.','停靠站'],['sight','n.','景點（常用複數）'],['interesting','adj.','有趣的'],['fantastic','adj.','極好的',1],['building','n.','建築物',1],['happen','v.','發生'],['explain','v.','解釋；說明'],['driver','n.','司機'],['hurry','v.','趕快；急忙趕到'],['passenger','n.','乘客',1],['appreciate','v.','感激；感謝',1]]},
+  {t:'phrases',id:'u5p',p:[['catch up (with sb)','了解近況；敘舊','How often do you catch up with old friends?'],['check out','看一看；了解一下（口語）','There\'s a new noodle shop. Let\'s check it out.'],['Of course.','當然（≈ Sure.）','A: Another game? B: Of course!'],['keep (sb) waiting','讓（某人）一直等','Sorry to keep you waiting.'],['break down','故障；拋錨（不及物）','The old machine breaks down a lot.'],['get on / get off','上／下（交通工具）','We got off at Taipei Main Station.'],['take a taxi / bus / train','搭乘交通工具','I always take a taxi when it rains.']]},
+  {t:'type',id:'u5h',title:'對話中的過去式：打出來',tag:'先在課文裡圈出它們',say:true,ph:'past tense',q:[['visit','visited'],['finish','finished'],['spend','spent'],['go','went'],['see','saw'],['break','broke'],['try','tried'],['tell','told'],['ask','asked'],['get','got'],['hurry','hurried'],['do','did']]},
+  {t:'mcq',id:'u5c',title:'對話理解',tag:'看雜誌 pp.30–31 作答',q:[{q:'Part A: Where did Connor go on his trip?',o:['Barcelona, Spain','Tokyo, Japan','Paris, France','London, England'],a:0},{q:'Part A: What was the first stop on Connor\'s list?',o:['Gaudí\'s famous church','La Rambla','A hotel gift shop','A museum'],a:0},{q:'Part A: How did Connor feel about the trip?',o:['He loved it and didn\'t want to leave.','He was bored.','He wanted to go home early.','He got sick.'],a:0},{q:'Part B: Why was Nina late?',o:['Her bus broke down.','She got up late.','She took the wrong taxi.','She forgot the time.'],a:0},{q:'Part B: What did the driver tell the passengers to do?',o:['Wait for another bus','Take a taxi','Walk to their stops','Call their friends'],a:0},{q:'Part B: How did Nina finally get there?',o:['She got off the bus and hurried there.','She waited for the next bus.','Simon picked her up.','She rode a scooter.'],a:0}]},
+  {t:'write',id:'u5wr',title:'我的週末／旅行（過去式寫作）',prompt:'寫 4–5 句上週末或某次旅行的經驗：去了哪、做了什麼、發生什麼事、感覺如何。',hints:['Last weekend, I ...','We visited ...','... broke down','It was fantastic.','I spent a lot of time ...'],min:40,model:'Last weekend, I went to Yilan with my family. We visited a farm and ate fresh fruit. On the way home, our car broke down, so we took a train. We got home late, but it was a fantastic trip!'}]},
+ {h:'Unit 6 短篇故事集 · The Missing Mail〈遺失的郵件〉',s:'pp.32–34 ｜ 原著：R. K. Narayan（1947）· 人際關係',b:[
+  {t:'note',html:'<b>人物表</b>　Thanappa＝熱心的郵差　·　Ramanujam＝父親　·　Kamakshi＝Ramanujam 的女兒（快滿 17 歲）　·　故事場景：虛構小鎮 Malgudi'},
+  {t:'vocab',id:'u6w',w:[['mailman','n.','郵差（複數 mailmen）'],['letter','n.','信件（可數）'],['mail','n.','郵件（不可數）'],['daughter','n.','女兒'],['husband','n.','丈夫'],['route','n.','路線',1],['father-in-law','n.','岳父',1],['suggest','v.','建議',1],['young','adj.','年輕的'],['marry','v.','嫁；娶'],['please','v.','使高興；使滿意'],['worried','adj.','擔心的'],['training','n.','訓練',1],['wedding','n.','婚禮',1],['death','n.','死亡'],['surprise','v.','使驚訝'],['date','n.','日期'],['forgive','v.','原諒（forgave-forgiven）'],['telegram','n.','電報',1]]},
+  {t:'phrases',id:'u6p',p:[['A is close to B','A 和 B 很親近（close 形容詞）','Jerome is very close to his grandmother.'],['turn + 年齡','滿……歲','My sister just turned 15.'],['A writes to B / write back','寫信給 B／回信','I wrote to my cousin, but he didn\'t write back.'],['get married','結婚','My parents got married in 2005.'],['on the 20th of May','在五月二十日（日期用 on，數字用序數）','My birthday is on the 3rd of June.'],['help out','幫忙（分擔工作）','I\'d like to help out. What can I do?'],['tell the truth','說實話','Why didn\'t you just tell the truth?'],['A keeps (sth) from B','A 向 B 隱瞞（某事）','Lisa kept the secret from her sister.'],['be sorry for','為……感到抱歉','I\'m sorry for being late.']]},
+  {t:'order',id:'u6o',title:'故事重組：把事件排回正確順序',pre:'句子為學習單改寫，讀完 pp.32–34 再排。',items:['Thanappa learns about Ramanujam\'s problem from his letters.','Thanappa suggests a young man in Delhi.','The boy\'s parents say the wedding must be on May 20.','Thanappa helps out with the wedding.','The wedding goes well.','Thanappa brings Ramanujam a card and a telegram about his uncle.','Thanappa tells the truth about the late mail.','Ramanujam forgives Thanappa.']},
+  {t:'mcq',id:'u6r',title:'故事理解',q:[{q:'Who wants Ramanujam to find a husband for Kamakshi fast?',o:['His father-in-law','Thanappa','The boy\'s parents','Kamakshi'],a:0},{q:'Why must the wedding happen on May 20?',o:['After that, the boy leaves for training for three years.','It is Kamakshi\'s birthday.','Thanappa is free that day.','The mail comes on that day.'],a:0},{q:'What news did the late mail bring?',o:['Ramanujam\'s uncle was very sick and then died.','The boy didn\'t want to get married.','The wedding moved to June.','Kamakshi got into a school.'],a:0},{q:'Why did Thanappa keep the mail from Ramanujam?',o:['He didn\'t want to stop the wedding.','He forgot about it.','He lost the letters.','Ramanujam asked him to.'],a:0},{q:'How does the story end?',o:['Ramanujam forgives Thanappa.','Thanappa loses his job.','The wedding stops.','Ramanujam never talks to Thanappa again.'],a:0},{q:'Which sentence is correct? (Info Box: mail vs. letter)',o:['I got three letters today.','I got three mails today.','I got a mail today.','I got many mails today.'],a:0,ex:'mail 不可數；letter 可數。'}]},
+  {t:'write',id:'u6wr',title:'你怎麼看 Thanappa？',prompt:'Thanappa 把郵件晚兩天才交出來，你覺得他做得對嗎？寫 3–4 句表達看法和理由。',hints:['I think ... because ...','keep ... from ...','tell the truth','be sorry for','However, ...'],min:30,model:'I think Thanappa was wrong to keep the mail from Ramanujam. Ramanujam should know about his uncle. However, Thanappa only wanted to help the family, and he was sorry for his actions. I\'m glad he told the truth in the end.'}]}
+]},
+{id:'w4',name:'第四週',color:'--w4',band:['第四週　Units 7–9','11/23–11/30 ｜ 流行最前線：身體密碼 ＋ 品格英語：化嫉妒為成長 ＋ 安妮信箱'],units:[
+ {h:'Unit 7 流行最前線 · Your Body Is Your Password 偷不走的身體密碼',s:'pp.35–37 ｜ 科技資訊',b:[
+  {t:'vocab',id:'u7w',w:[['finger','n.','手指'],['type','v.','打字'],['mouse','n.','滑鼠（複數 mice）'],['touch','v.','觸碰'],['password','n.','密碼',1],['social media','n.','社群媒體',1],['account','n.','帳戶；帳號',1],['accept','v.','接受',1],['voice','n.','（人的）聲音'],['company','n.','公司'],['tell','v.','分辨'],['copy','v.','模仿；效仿'],['movement','n.','動作；移動',1],['user','n.','使用者',1],['safety','n.','安全'],['probably','adv.','可能；大概'],['common','adj.','常見的；普通的'],['strong','adj.','牢靠的'],['regular','adj.','一般的',1],['hack','v.','入侵（電腦、手機）',1]]},
+  {t:'phrases',id:'u7p',p:[['get into','進入；登入','You need a worker ID to get into the system.'],['a group of numbers and letters','一組數字和字母','A strong password is a group of numbers and letters.'],['As a result, ...','因此','Belle didn\'t study. As a result, she failed the test.'],['the back of','……的後方、背面','Write your name on the back of the card.'],['act like + N','功能像……','This app acts like a personal assistant.'],['A stops B from + V-ing','A 阻止 B（做某事）','The rain didn\'t stop us from having fun.'],['A helps B with (sth)','A 幫助 B 處理（某事）','My sister helps me with English.'],['sign in (to)','登入','Nat signed in to his account.'],['make a difference','有差別；造成影響','It doesn\'t make a difference to me.']]},
+  {t:'sort',id:'u7s',title:'是不是「身體密碼」？',tag:'分類',cats:['✔ 身體密碼','✘ 一般密碼'],items:[['your face',0],['the lines on your fingers',0],['your voice',0],['the back of your eye',0],['the way you move your mouse',0],['the way you type',0],['your name and birthday',1],['a group of numbers and letters',1],['your pet\'s name',1]]},
+  {t:'mcq',id:'u7r',title:'課文與對話理解',tag:'pp.35–37',q:[{q:'Why are body passwords hard to take from people?',o:['When the actions aren\'t ours, the accounts don\'t work.','They are very long.','Nobody uses them.','They change every day.'],a:0},{q:'Why do some companies use mouse movement as a password?',o:['People\'s movement habits are hard to copy.','Mice are cheap.','It is faster than typing.','Everyone moves the mouse the same way.'],a:0},{q:'What was William\'s regular password?',o:['His name and birthday','His voice','A group of numbers and letters','His pet\'s name'],a:0},{q:'What does Linda tell William to do?',o:['Change his password','Delete the app','Use the same password everywhere','Stop signing in'],a:0}]},
+  {t:'cloze',id:'u7c',bank:['get into','As a result','the back of','acts like','stops','with','sign in','difference'],q:[['You need a password to ___ your email account.','get into'],['He used a strong password. ___, his account was safe.','As a result'],['The answer is on ___ the page.','the back of'],['My phone ___ a camera, a map, and a radio.','acts like'],['A strong lock ___ bad people from getting in.','stops'],['Can you help me ___ my homework?','with'],['I forgot my password, so I can\'t ___.','sign in'],['Using a strong password can make a big ___.','difference']]},
+  {t:'write',id:'u7wr',title:'帳號安全小提醒',prompt:'給同學 3 個保護帳號的建議，至少用到 2 個本課語塊。',hints:['should / shouldn\'t','common','strong','As a result, ...','body password'],min:35,model:'First, you shouldn\'t use your name and birthday as a password. They are too common. Second, use a strong password with a group of numbers and letters. Third, use a body password, like your face. As a result, it will be hard for people to hack your account.'}]},
+ {h:'Unit 8 品格英語 · Grow by Changing Your Jealous Feelings 化嫉妒為成長',s:'pp.38–39 ｜ 身心素質',b:[
+  {t:'vocab',id:'u8w',w:[['prize','n.','獎品；獎項'],['sign','n.','徵兆；跡象'],['anyone','pron.','任何人'],['honest','adj.','誠實的'],['jealous','adj.','嫉妒的',1],['jealousy','n.','嫉妒',1],['sibling','n.','兄弟姊妹',1],['fear','n.','恐懼',1],['notice','v.','察覺；注意'],['classmate','n.','同學'],['angle','n.','角度'],['focus','n.','焦點；重心'],['growth','n.','成長',1],['positive','adj.','正面的；樂觀的',1]]},
+  {t:'phrases',id:'u8p',p:[['pay attention to','注意、關注……','Please pay attention to the teacher.'],['belong to','屬於（不及物）','That money doesn\'t belong to you.'],['take away','拿走（可分片語動詞）','Mom took my video game away.'],['turn A into B','把 A 轉變成 B','Glen turned his hate into love.'],['First, ... Next, ... Last, ...','首先……接著……最後……','First, heat the pan. Next, add oil. Last, break an egg.'],['..., so can I.','……我也可以（助動詞／be 動詞／do 要對應）','Lily will join the game, and so will I.']]},
+  {t:'order',id:'u8o',title:'化嫉妒為成長三步驟',pre:'把三步驟排回課文順序。',items:['Notice the feeling.','See things from a positive angle.','Change your focus: ask yourself what you can do.']},
+  {t:'mcq',id:'u8so',title:'so + 助動詞 + 主詞',tag:'看前半句的動詞決定',q:[{q:'Lily can dance, and so ___ I.',o:['can','do','am','will'],a:0},{q:'Emily likes chocolate, and so ___ Tom.',o:['does','do','is','likes'],a:0},{q:'I was tired, and so ___ my brother.',o:['was','did','is','were'],a:0},{q:'They will come to the party, and so ___ we.',o:['will','do','are','can'],a:0},{q:'We went to the zoo, and so ___ they.',o:['did','do','went','were'],a:0},{q:'My dad is a teacher, and so ___ my mom.',o:['is','does','was','are'],a:0}]},
+  {t:'mcq',id:'u8r',title:'課文理解',q:[{q:'When people feel jealous, it is often a sign of ___.',o:['fear','growth','honesty','prizes'],a:0},{q:'Why may jealous people be bad to others?',o:['They don\'t want anyone to take away important people or things.','They want to give prizes to others.','They have no siblings.','They are always happy.'],a:0},{q:'What good thing can jealousy teach people?',o:['To be honest with themselves','To win every prize','To stay away from friends','To stop growing'],a:0},{q:'Which is the best example of changing your focus?',o:['"What can I do to get that?"','"It\'s not fair!"','"I don\'t care anymore."','"He is better than me."'],a:0}]},
+  {t:'write',id:'u8wr',title:'我的三步驟自我對話',prompt:'想一個你曾經嫉妒的時刻，用 First / Next / Last 寫出你怎麼把它變成成長。',hints:['I\'m jealous of ...','First, I notice ...','Next, I tell myself, ...','If he/she can do it, so can I.','Last, I ...'],min:40,model:'Last month, my friend won the singing prize. First, I noticed the feeling: I was jealous of her. Next, I told myself, \'She did a great job. If she can do it, so can I.\' Last, I changed my focus and practiced singing every day.'}]},
+ {h:"Unit 9 安妮信箱 · My Favorite Video Game 我最喜歡的電玩遊戲",s:"pp.40–41 ｜ 媒體素養 ｜ Ted 的 80 字短文與 5 個修正",b:[
+  {t:"note",html:"<b>先讀 p.40 Ted 的信</b>：他介紹電玩《Super Bear Adventure》，要打敗蜜蜂、找回哥哥和其他熊、摧毀紫色蜂蜜的來源。信裡有 <b>5 個錯誤</b>——先自己改，再對照 p.41 的 Corrections。"},
+  {t:"vocab",id:"u9w",title:"信中參考單字＋本課關鍵字",w:[["source","n.","來源；根源",1],["destroy","v.","摧毀",1],["explore","v.","探索",1],["adventure","n.","冒險"],["interested","adj.","感興趣的（主詞多為人）"],["interesting","adj.","有趣的（描述事物或人的特質）"],["hope","v.","希望（可能發生的事）"],["wish","v.","希望（幾乎不可能的事）"]]},
+  {t:"type",id:"u9fix",title:"小編上身：把 Ted 的句子改正確",tag:"打出整句",ph:"corrected sentence",say:true,q:[["❶ It is a game about bear.","It is a game about bears."],["❷ You must to fight bees and other bad things.","You must fight bees and other bad things.|You have to fight bees and other bad things."],["❸ Your job is find your brother and other bears.","Your job is to find your brother and other bears."],["❹ It is very interested and fun.","It is very interesting and fun."],["❺ I wish you enjoy it.","I hope you enjoy it."]]},
+  {t:"mcq",id:"u9g",title:"Corrections 五大重點：換句練習",tag:"p.41",q:[
+   {q:"Tess told us a story about ___.",o:["ghosts","ghost","a ghosts","the ghost's"],a:0,ex:"「關於某一類人事物」用複數可數名詞。"},
+   {q:"Students must ___ the rules.",o:["follow","to follow","following","followed"],a:0,ex:"must 是助動詞，後接原形動詞；也可說 have to + V。"},
+   {q:"You ___ show up to work on time.",o:["have to","must to","has to","having to"],a:0},
+   {q:"Your job is ___ the phone and take messages.",o:["to answer","answer","answered","answers"],a:0,ex:"Your job is to + V，不定詞當主詞補語。"},
+   {q:"Everyone was ___ in the guest's speech.",o:["interested","interesting","interest","interests"],a:0,ex:"主詞是人、表達感受 → interested。"},
+   {q:"To Ralph, cooking shows aren't ___.",o:["interesting","interested","interest","interestedly"],a:0,ex:"主詞是事物、描述特質 → interesting。"},
+   {q:"I ___ that I could fly.",o:["wish","hope","hoped","am hoping"],a:0,ex:"不可能發生的事 → wish，that 子句用過去式。"},
+   {q:"We ___ that Mr. Smith gets better soon.",o:["hope","wish","wished","wishes"],a:0,ex:"有可能發生的事 → hope，that 子句用現在式或未來式。"}]},
+  {t:"tf",id:"u9tf",title:"信件內容是非題",q:[["Super Bear Adventure is a game about bears.",true],["In the game, you need to save your brother and other bears.",true],["You need to find the source of the green honey.",false,"是紫色蜂蜜（purple honey）。"],["Ted thinks the game is boring.",false,"他覺得很有趣又好玩。"]]},
+  {t:'write',id:'u9wr',title:'寫給安妮：我最喜歡的電玩遊戲',prompt:'綜合本月所學：用過去式說你怎麼開始玩、用情緒形容詞說感受、用 look forward to 說期待。寫好後可再貼到雜誌的 AI 寫作批改。',hints:['My favorite video game is ...','I started playing it ...（過去式）','I like it because ...','When I play it, I feel ...','I\'m looking forward to ...','But I agree not to play more than ...'],min:50,model:'My favorite video game is a farming game. I started playing it last summer with my cousin. I like it because I can grow plants and make new friends. When I play it, I feel relaxed and happy. However, I agree not to play for more than one hour a day. I\'m looking forward to the new update next month!'}]}
+]},
+{id:"quiz",name:"📝 小考",color:"--quiz",band:["單元複習卷　模擬小考 Test 1–7","仿學校《ABC 互動英語》單元複習卷：Part 1 字彙 36% · Part 2 克漏字 40% · Part 3 短文閱讀 24%｜交卷後橘色標出答題依據"],units:[
+{h:"Test 1　Unit 1：Around a Hotel Lobby",s:"pp.10–14",b:[{t:"quiz",id:"qz1",test:"Test 1",unit:"Unit 1: Around a Hotel Lobby (pp. 10–14)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"Excuse me, can I ___ your pen? I left mine at home.",o:["book","borrow","arrange","enter"],a:1},
+  {q:"Please fill out this ___ and give it back to the front desk.",o:["form","floor","sensor","souvenir"],a:0},
+  {q:"Don't eat too many snacks now. You'll ___ your dinner.",o:["arrange","push","work","spoil"],a:3},
+  {q:"The shuttle bus goes ___ to the airport, so it's very fast.",o:["extra","either","straight","busy"],a:2},
+  {q:"My dad ___ a table at a nice restaurant for Mom's birthday.",o:["borrowed","entered","booked","tapped"],a:2},
+  {q:"Tom bought some ___ for his friends on his trip to Japan.",o:["souvenirs","sensors","floors","passports"],a:0}]},
+ {type:"cloze",pct:40,text:"Amy and her family arrived at Sunny Hotel last Friday. Her dad went to the front desk to check {7}. The clerk asked for his passport and credit card, and then she gave him a form to fill {8}. A bellhop {9} them to their room on the tenth floor. Amy wanted to take the elevator, but it didn't move. \"You need to {10} your key card on the sensor first,\" her dad said. That night, the family hung out in the lobby. Amy was looking forward to {11} the city the next day.",q:[
+  {o:["in","on","up","at"],a:0,ex:"check in 辦理入住"},{o:["in","out","away","off"],a:1,ex:"fill out 填寫"},{o:["put","showed","took care","hung"],a:1,ex:"show (sb) to (place) 帶某人到某處"},{o:["push","borrow","tap","spoil"],a:2,ex:"tap the key card 刷房卡"},{o:["see","saw","seeing","sees"],a:2,ex:"look forward to + V-ing"}]},
+ {type:"passage",pct:24,sent:["Welcome to Sunny Hotel!","Breakfast is served from 7 to 10 a.m. on the second floor.","Guests need their key cards to use the elevator, so please keep them with you.","Our gift shop is next to the front desk, and it sells souvenirs and snacks.","If you need to go to the airport, our shuttle bus leaves every hour from the front door.","Please tell the front desk clerk one day before, and we will arrange it for you."],q:[
+  {q:"Where can guests have breakfast?",o:["In the lobby","On the second floor","At the gift shop","On the shuttle bus"],a:1,ev:[1]},
+  {q:"Why should guests keep their key cards with them?",o:["They need them to take the elevator.","They need them to buy souvenirs.","They need them to eat breakfast.","They need them to get on the shuttle bus."],a:0,ev:[2]},
+  {q:"What should guests do if they want to take the shuttle bus?",o:["Wait at the gift shop.","Buy a ticket at the airport.","Tell the front desk one day before.","Call the bellhop."],a:2,ev:[4,5]},
+  {q:"Where would you most likely see this note?",o:["At a school","In a hotel","At an airport","In a restaurant"],a:1,ev:[0]}]}]}]},
+{h:"Test 2　Unit 2：Buy Nothing Day",s:"pp.16–18",b:[{t:"quiz",id:"qz2",test:"Test 2",unit:"Unit 2: Buy Nothing Day (pp. 16–18)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"Many stores have great ___ on Black Friday, so people go shopping.",o:["deals","seasons","wallets","artists"],a:0},
+  {q:"Winter is my favorite ___ because I love snow.",o:["holiday","season","start","attention"],a:1},
+  {q:"The funny dog got everyone's ___ at the park.",o:["wallet","deal","attention","start"],a:2},
+  {q:"James took some money out of his ___ and paid for lunch.",o:["season","artist","holiday","wallet"],a:3},
+  {q:"The store ___ the price of its coffee, so fewer people buy it now.",o:["raised","recycled","agreed","moved"],a:0},
+  {q:"This test is hard, and the next one is ___ harder.",o:["ever","even","never","only"],a:1}]},
+ {type:"cloze",pct:40,text:"Kevin used to buy a lot of things he didn't need. Then he learned {7} Buy Nothing Day. This year, he and his sister agreed {8} spend any money on that day. They stayed away {9} the shops. Instead, they made {10} on their old bikes and rode to the park. Kevin doesn't want to waste money {11}. He thinks the day made his life better.",q:[
+  {o:["about","for","with","by"],a:0,ex:"learn about 得知"},{o:["to not","not to","don't","no"],a:1,ex:"agree not to + V，not 放在 to 前面"},{o:["at","with","from","off"],a:2,ex:"stay away from 遠離"},{o:["repair","repairs","repaired","repairing"],a:1,ex:"make repairs 修理（名詞複數）"},{o:["anymore","either","too","already"],a:0,ex:"not ... anymore 不再"}]},
+ {type:"passage",pct:24,sent:["Lucy's school had a Buy Nothing Day last November.","On that day, students did not buy snacks or drinks at the school store.","Instead, they brought old books and toys and gave them to younger students.","Some students fixed broken chairs in their classrooms with their teachers.","At first, Lucy thought the day would be boring.","But in the end, she felt happy because she helped other people and saved money."],q:[
+  {q:"What did students do with their old books and toys?",o:["They sold them.","They threw them away.","They gave them to younger students.","They took them home."],a:2,ev:[2]},
+  {q:"How did Lucy feel at the end of the day?",o:["Bored","Happy","Hungry","Angry"],a:1,ev:[5]},
+  {q:"Which is TRUE?",o:["Students bought snacks at the school store.","Lucy thought the day would be fun at first.","Some students made repairs in their classrooms.","Teachers gave students money."],a:2,ev:[3]},
+  {q:"What is the passage mainly about?",o:["A day without shopping at Lucy's school","How to fix a broken chair","Lucy's favorite toys","A new school store"],a:0,ev:[0]}]}]}]},
+{h:"Test 3　Unit 3：Sharing Feelings",s:"pp.19–22",b:[{t:"quiz",id:"qz3",test:"Test 3",unit:"Unit 3: Sharing Feelings (pp. 19–22)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"Ben didn't get into the program, so he felt very ___.",o:["excited","disappointed","grateful","glad"],a:1},
+  {q:"I'm ___ to my teacher because she helped me a lot.",o:["grateful","nervous","bored","lonely"],a:0},
+  {q:"Colin tried to take ___ for my work, so I was mad.",o:["care","part","credit","place"],a:2},
+  {q:"The ___ of the company lets the workers leave early on Fridays.",o:["team","boss","engineer","program"],a:1},
+  {q:"Don't ___ on me to Mom! I'll clean my room now.",o:["tell","talk","say","speak"],a:0},
+  {q:"Mindy wants to be an ___ and build bridges in the future.",o:["email","scooter","engineer","garage"],a:2}]},
+ {type:"cloze",pct:40,text:"Last week, Ivy's team project didn't go well, and she was {7} about it. Her friend Sam saw her and asked, \"Why the long {8}?\" Ivy said, \"I tried my {9}, but I still got a bad grade.\" Sam said, \"Don't be so negative. Let's ask the teacher for help.\" The teacher gave them some tips, and Ivy stopped {10} about the grade. Now she feels {11} for Sam's help.",q:[
+  {o:["sad","glad","lovely","excited"],a:0},{o:["face","head","eye","heart"],a:0,ex:"Why the long face? 怎麼愁眉苦臉的？"},{o:["good","well","best","better"],a:2,ex:"try one's best 盡全力"},{o:["worry","to worry","worried","worrying"],a:3,ex:"stop + V-ing 不再做某事"},{o:["bored","grateful","scared","lonely"],a:1}]},
+ {type:"passage",pct:24,sent:["Everyone has bad days.","When you feel sad or angry, it's OK to share your feelings with someone you trust.","You can talk to your family, a friend, or a teacher.","Talking about your feelings can help you feel better and less lonely.","Also, try to listen when others share their feelings with you.","Just asking \"How are you feeling?\" can make a big difference to someone."],q:[
+  {q:"According to the passage, who can you share your feelings with?",o:["Only your teacher","People you trust","People on the Internet","Nobody"],a:1,ev:[1,2]},
+  {q:"What can talking about your feelings do?",o:["Make you more lonely","Make your friends tired","Stop all bad days","Help you feel better"],a:3,ev:[3]},
+  {q:"What does the passage say we should also do?",o:["Listen to others' feelings","Keep our feelings to ourselves","Never feel angry","Talk only to our family"],a:0,ev:[4]},
+  {q:"What is the best title for the passage?",o:["How to Be a Good Student","Sharing Feelings Helps","Why We Get Angry","My Bad Day"],a:1,ev:[1,3]}]}]}]},
+{h:"Test 4　Unit 4 & Unit 5：The Repair Café + 過去簡單式",s:"pp.24–31",b:[{t:"quiz",id:"qz4",test:"Test 4",unit:"Unit 4 & Unit 5: The Repair Café + Past Simple (pp. 24–31)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"My computer is ___, so I can't do my homework.",o:["broken","common","quick","lovely"],a:0},
+  {q:"Here is a helpful ___ for saving water: turn off the water when you brush your teeth.",o:["tool","tip","site","waste"],a:1},
+  {q:"Please put your food ___ in the green bin.",o:["skill","meeting","waste","interest"],a:2},
+  {q:"Last month, Brian ___ his spending in half.",o:["cut","cuts","cutting","to cut"],a:0},
+  {q:"Sorry to keep you ___. The bus broke down.",o:["wait","waited","to wait","waiting"],a:3},
+  {q:"Adam took us to see a few famous ___ in the city.",o:["drivers","passengers","sights","stops"],a:2}]},
+ {type:"cloze",pct:40,text:"Last Saturday, Jason {7} to a Repair Café with his broken lamp. A kind man there lent him a {8} and showed him how to fix it. Jason {9} able to fix the lamp in an hour. What's {10}, he made a new friend. On his way home, the bus {11} down, but Jason didn't mind. He was too happy.",q:[
+  {o:["go","goes","went","going"],a:2,ex:"Last Saturday → 過去式"},{o:["hand","foot","head","eye"],a:0,ex:"lend (sb) a hand 幫忙"},{o:["is","was","were","did"],a:1,ex:"be able to，主詞 Jason、過去式 → was"},{o:["many","much","more","most"],a:2,ex:"What's more 再者"},{o:["broke","breaks","broken","break"],a:0,ex:"break down 拋錨，過去式 broke"}]},
+ {type:"passage",pct:24,sent:["Last month, my grandpa's old radio stopped working.","He didn't want to throw it away because it was a gift from my grandma.","We took it to a Repair Café near our home.","It didn't cost anything, and a woman with great skills helped us.","She found the problem and fixed it in twenty minutes.","Now Grandpa listens to the radio every morning, and he says it works better than before."],q:[
+  {q:"Why didn't Grandpa throw the radio away?",o:["It was new.","It was a gift from Grandma.","It was too expensive.","It still worked well."],a:1,ev:[1]},
+  {q:"How much did they pay at the Repair Café?",o:["Nothing","Twenty dollars","A lot of money","We don't know."],a:0,ev:[3]},
+  {q:"Which is TRUE?",o:["Grandpa fixed the radio himself.","The repair took two hours.","A woman fixed the radio.","The radio still doesn't work."],a:2,ev:[3,4]},
+  {q:"What does \"it works better than before\" mean?",o:["The radio is in good shape now.","Grandpa works harder now.","The radio is broken again.","The woman works at a radio store."],a:0,ev:[5]}]}]}]},
+{h:"Test 5　Unit 6：The Missing Mail",s:"pp.32–34",b:[{t:"quiz",id:"qz5",test:"Test 5",unit:"Unit 6: The Missing Mail (pp. 32–34)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"The ___ brings letters to our house every morning.",o:["husband","mailman","daughter","driver"],a:1},
+  {q:"I'm ___ about my test tomorrow. I didn't study enough.",o:["worried","young","close","honest"],a:0},
+  {q:"Please ___ me. I'm sorry I broke your cup.",o:["marry","surprise","forgive","please"],a:2},
+  {q:"My grandma and I talk every day. I'm very ___ to her.",o:["young","worried","late","close"],a:3},
+  {q:"What's the ___ today? Is it November 20?",o:["death","date","letter","route"],a:1},
+  {q:"The news of his ___ made everyone very sad.",o:["wedding","training","death","mail"],a:2}]},
+ {type:"cloze",pct:40,text:"Nina's sister will get {7} next spring. Nina wants to help {8} with the wedding. She writes {9} all her family and friends to tell them the date. The wedding will be {10} the 15th of April. Nina hopes the wedding will {11} everyone.",q:[
+  {o:["marry","married","marrying","to marry"],a:1,ex:"get married 結婚"},{o:["out","up","on","off"],a:0,ex:"help out 幫忙"},{o:["to","for","at","with"],a:0,ex:"write to (sb) 寫信給某人"},{o:["in","at","on","by"],a:2,ex:"特定日期用 on"},{o:["pleased","please","pleases","pleasing"],a:1,ex:"will + 原形動詞；please 使高興"}]},
+ {type:"passage",pct:24,sent:["Mr. Lee was a mailman in a small town.","One day, he found an old letter under the seat of his bike.","It was for Mrs. Chen, and the date on it was three months ago.","Mr. Lee felt very bad, so he brought the letter to her house right away.","He told her the truth and said he was sorry.","Mrs. Chen opened the letter and smiled. It was from her son, and he was coming home next week.","She forgave Mr. Lee and thanked him for his honesty."],q:[
+  {q:"Where did Mr. Lee find the letter?",o:["In Mrs. Chen's house","At the post office","Under the seat of his bike","In his bag"],a:2,ev:[1]},
+  {q:"How late was the letter?",o:["Three days","Three weeks","Three years","Three months"],a:3,ev:[2]},
+  {q:"What did Mr. Lee do after he found the letter?",o:["He threw it away.","He took it to Mrs. Chen and told the truth.","He kept it from Mrs. Chen.","He asked her son for help."],a:1,ev:[3,4]},
+  {q:"How did Mrs. Chen feel at the end?",o:["Happy","Angry","Worried","Lonely"],a:0,ev:[5,6]}]}]}]},
+{h:"Test 6　Unit 7：Your Body Is Your Password",s:"pp.35–37",b:[{t:"quiz",id:"qz6",test:"Test 6",unit:"Unit 7: Your Body Is Your Password (pp. 35–37)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"Don't ___ the paintings. They are very old.",o:["touch","type","copy","tell"],a:0},
+  {q:"Many people use their social media ___ to talk to friends.",o:["companies","accounts","voices","mice"],a:1},
+  {q:"The twins look the same. I can't ___ Amy from Ann.",o:["speak","say","tell","talk"],a:2},
+  {q:"Your name and birthday don't make a ___ password. Someone can easily hack it.",o:["common","regular","strong","weak"],a:2},
+  {q:"It's cloudy. It will ___ rain this afternoon.",o:["probably","safety","common","strongly"],a:0},
+  {q:"Ken's ___ is very low, so he sounds like his father on the phone.",o:["finger","mouse","company","voice"],a:3}]},
+ {type:"cloze",pct:40,text:"These days, many phones accept our faces as passwords. We just look at the phone to get {7} it. Some apps also use the lines on our {8}. These body passwords are hard to {9}, so they keep our accounts safe. As a {10}, more and more companies are using them. However, we still need strong regular passwords, too. Using both can {11} a big difference.",q:[
+  {o:["into","on","at","off"],a:0,ex:"get into 進入；登入"},{o:["voices","fingers","eyes","feet"],a:1,ex:"the lines on our fingers 指紋"},{o:["touch","type","copy","accept"],a:2,ex:"hard to copy 難以模仿"},{o:["reason","result","way","sign"],a:1,ex:"As a result 因此"},{o:["do","take","get","make"],a:3,ex:"make a difference 造成影響"}]},
+ {type:"passage",pct:24,sent:["Leo's sister signed in to his game account without asking him.","She knew his password because it was his dog's name.","Leo was angry, but he also learned something.","His password was too common, so it wasn't safe.","Now Leo uses a group of numbers and letters, and his phone also checks his face.","Nobody can get into his account anymore."],q:[
+  {q:"How did Leo's sister get into his account?",o:["She used his face.","She knew his password.","She asked Leo first.","She hacked the game company."],a:1,ev:[1]},
+  {q:"What was wrong with Leo's old password?",o:["It was too long.","It was too hard to remember.","It was too common.","It used numbers."],a:2,ev:[3]},
+  {q:"What does Leo use now?",o:["A strong password and a body password","Only his dog's name","Only his voice","His sister's birthday"],a:0,ev:[4]},
+  {q:"What can we learn from the passage?",o:["Dogs' names make good passwords.","Never share games with your sister.","Body passwords are easy to copy.","A strong password keeps your account safe."],a:3,ev:[3,5]}]}]}]},
+{h:"Test 7　Unit 8：Grow by Changing Your Jealous Feelings",s:"pp.38–39",b:[{t:"quiz",id:"qz7",test:"Test 7",unit:"Unit 8: Grow by Changing Your Jealous Feelings (pp. 38–39)",parts:[
+ {type:"vocab",pct:36,q:[
+  {q:"The first ___ for the contest is a new bike.",o:["prize","sign","focus","angle"],a:0},
+  {q:"Dark clouds are often a ___ of rain.",o:["prize","sign","fear","focus"],a:1},
+  {q:"To be ___, I didn't finish my homework.",o:["jealous","positive","honest","common"],a:2},
+  {q:"Nobody ___ my new glasses. I was a little sad.",o:["noticed","belonged","paid","turned"],a:0},
+  {q:"Let's look at the problem from a different ___.",o:["prize","sibling","classmate","angle"],a:3},
+  {q:"This bag doesn't ___ to me. Is it yours?",o:["belong","notice","pay","turn"],a:0}]},
+ {type:"cloze",pct:40,text:"Mia's little brother is a baby, and her parents pay a lot of attention {7} him. At first, Mia felt jealous. Then she noticed the feeling and tried to see things from a positive {8}. \"My parents love both of us,\" she told {9}. Next, she changed her focus and helped take care of the baby. Mia turned her jealousy {10} love. Her parents are happy, and {11} is she.",q:[
+  {o:["at","to","for","on"],a:1,ex:"pay attention to 關注"},{o:["angle","sign","prize","fear"],a:0,ex:"from a positive angle 從正面角度"},{o:["she","her","herself","hers"],a:2,ex:"tell oneself 告訴自己（反身代名詞）"},{o:["to","in","for","into"],a:3,ex:"turn A into B"},{o:["so","too","also","either"],a:0,ex:"..., and so is she. 她也是"}]},
+ {type:"passage",pct:24,sent:["Jack and Tim are good friends, and they are on the same soccer team.","Last week, the coach chose Tim to be the team captain.","Jack was jealous because he wanted to be captain, too.","He didn't talk to Tim for two days.","Then Jack asked himself, \"What can I learn from Tim?\"","He noticed that Tim always practiced hard and helped others.","Now Jack practices with Tim every day, and their friendship is stronger than before."],q:[
+  {q:"Why was Jack jealous?",o:["Tim got a new ball.","Tim became the team captain.","Tim joined another team.","Tim got better grades."],a:1,ev:[1,2]},
+  {q:"What did Jack do at first?",o:["He practiced with Tim.","He told the coach.","He didn't talk to Tim.","He left the team."],a:2,ev:[3]},
+  {q:"What did Jack notice about Tim?",o:["Tim works hard and helps others.","Tim is always late.","Tim doesn't like soccer.","Tim talks too much."],a:0,ev:[5]},
+  {q:"Which step from the article did Jack use when he asked himself a question?",o:["Pay attention to others.","Take away the prize.","Stay away from friends.","Change your focus."],a:3,ev:[4]}]}]}]}
+]},
+{id:"adv",name:"📖 進階閱讀",color:"--adv",band:["進階閱讀　週末閱讀 ＋ 聽說圖寫","對應進度表週末格：11/7–8 · 11/14–15 · 11/21–22 · 11/28–29"],units:[
+ {h:"進階閱讀 1 悠遊文化 · A Day for Giving Thanks 表達感謝的日子",s:"pp.44–45 ｜ 11/7–8",b:[
+  {t:"vocab",id:"a1w",w:[["thanks","n.","感謝；謝意（恆為複數）"],["national","adj.","國家的"],["fall","n.","秋天"],["dish","n.","菜餚"],["vegetable","n.","蔬菜"],["dessert","n.","甜點"],["Pilgrim","n.","清教徒移民",1],["harvest","n.","收成；豐收",1],["past","adj.","過去的"],["serve","v.","供應（食物）"],["god","n.","神（大寫指上帝）"],["yard","n.","院子"],["giant","adj.","巨大的"],["balloon","n.","氣球"],["football","n.","橄欖球",1],["parade","n.","遊行",1]]},
+  {t:"vocab",id:"a1f",title:"感恩節大餐 feast 相關字詞",w:[["roast turkey","n.","🦃 烤火雞"],["stuffing","n.","填料"],["cranberry sauce","n.","蔓越莓醬"],["mashed potatoes and gravy","n.","馬鈴薯泥佐肉汁醬"],["green bean","n.","四季豆"],["carrot","n.","🥕 胡蘿蔔"],["sweet potato","n.","🍠 地瓜"],["pumpkin pie","n.","🥧 南瓜派"]]},
+  {t:"phrases",id:"a1p",p:[["the fourth Thursday in November","十一月的第四個星期四（月份前用 in）","In the US, Father's Day is on the third Sunday in June."],["as the story goes","據說；聽說","As the story goes, a dragon lived in the lake."],["the + adj.","表示一群人（the poor 窮人、the rich 富人、the young 年輕人）","Robin Hood robbed the rich and gave the money to the poor."],["That's because ...","那是因為……（後接完整子句）","Mindy didn't answer her phone. That's because she didn't know the number."]]},
+  {t:"mcq",id:"a1r",title:"閱讀理解",q:[
+   {q:"When is Thanksgiving Day in the US?",o:["The fourth Thursday in November","The last Friday in November","The third Sunday in June","November 27 every year"],a:0},
+   {q:"Who shared the first Thanksgiving feast in 1621?",o:["The Pilgrims and the Wampanoag people","Two football teams","The people of New York City","Martine Postma and her friends"],a:0},
+   {q:"How long did the first Thanksgiving celebration last?",o:["Three days","One day","One week","Three hours"],a:0},
+   {q:"What is usually the main dish?",o:["A roast turkey","Pumpkin pie","Sweet potatoes","Spaghetti"],a:0},
+   {q:"How do some people show their thanks by giving back?",o:["They help serve Thanksgiving dinner to the poor.","They buy giant balloons.","They play football in the yard.","They go shopping all day."],a:0},
+   {q:"Why do many people play or watch football on Thanksgiving?",o:["Fall is the time for football in the US.","It is a national rule.","The Pilgrims played it in 1621.","There is nothing else to do."],a:0},
+   {q:"How do people in the US celebrate Thanksgiving? (隨堂測驗)",o:["They enjoy a feast with family and friends.","They give thanks for three days.","They make roast turkey for the Wampanoag people.","They share stories on the fourth Thursday in November."],a:0,ex:"雜誌解答：D。"}]},
+  {t:"cloze",id:"a1c",bank:["fourth","As the story goes","the poor","That's because","dessert","giant","serve","past"],q:[["Thanksgiving is on the ___ Thursday in November.","fourth"],["___, the first Thanksgiving took place in 1621.","As the story goes"],["Some people help give food to ___.","the poor"],["Many people watch football. ___ fall is the time for football.","That's because"],["Pumpkin pie is a popular Thanksgiving ___.","dessert"],["People love to see the ___ balloons in the parade.","giant"],["Ann planned to ___ the soup first.","serve"],["I'm thankful for many things from the ___ year.","past"]]},
+  {t:"write",id:"a1wr",title:"我的感謝清單",prompt:"像美國人在感恩節大餐前一樣，寫下過去一年你感謝的 3 件事，說明原因。",hints:["I'm thankful for ...","That's because ...","in the past year","give thanks to ..."],min:35,model:"I'm thankful for my family. They always take care of me. I'm also thankful for my best friend. That's because she lends me a hand when I'm sad. Last, I'm thankful for my English teacher. In the past year, she helped me a lot."}]},
+ {h:"進階閱讀 2 科技漫遊 · Desktop Pets 桌面寵物",s:"pp.46–47 ｜ 11/14–15",b:[
+  {t:"vocab",id:"a2w",w:[["pet","n.","寵物"],["trick","n.","把戲；招式"],["computer","n.","電腦"],["sheep","n.","綿羊（單複數同形）"],["robot","n.","機器人"],["design","n.","設計"],["desktop","n.","（電腦）桌面",1],["monster","n.","怪獸；怪物",1],["react","v.","反應",1],["program","n.","程式"],["seed","n.","種子"],["interest","v.","使感興趣"],["download","v.","下載"],["error","n.","錯誤"],["corner","n.","角落"],["mid-1980s","n.","一九八〇年代中期",1],["pointer","n.","（滑鼠）游標",1],["task","n.","任務",1]]},
+  {t:"phrases",id:"a2p",p:[["keep (sb) company","陪伴（某人）（注意受詞位置）","Mary kept me company at the dentist's office."],["take care of","照顧","It isn't easy to take care of a baby."],["come out","推出","The writer's new book will come out soon."],["come with","附有；附帶","The set meal comes with a drink."],["less + adj.","比較不……的（劣等比較）","Today is less humid."]]},
+  {t:"tf",id:"a2tf",title:"隨堂測驗是非題",tag:"p.46",q:[["People have to give desktop pets food.",true,"課文：You need to feed them."],["Desktop pets don't need anything from people.",false,"它們跟真寵物一樣需要愛和照顧。"],["People can turn their designs into desktop pets.",true],["Nobody has the money to take care of a desktop pet.",false]]},
+  {t:"mcq",id:"a2r",title:"閱讀理解",q:[
+   {q:"What was the first desktop pet?",o:["A cat called Neko","A dog called Max","A robot","A sheep"],a:0},
+   {q:"What would Neko do when you stopped moving the pointer?",o:["Sit and wait or go to sleep","Run off the screen","Talk to you","Download a program"],a:0},
+   {q:"What can some desktop pets do because they use AI?",o:["Talk to you and answer your questions","Eat real food","Move your mouse for you","Make phone calls"],a:0},
+   {q:"How do desktop pets make computer work?",o:["Less boring and serious","More difficult","Faster and harder","Longer and slower"],a:0},
+   {q:"What do we learn from the passage? (隨堂測驗)",o:["An OpenAI program has eight desktop pets.","People make their desktop pets do their tasks for them.","Desktop pets make it hard to download programs.","Neko would move the pointer around the computer screen."],a:0,ex:"a rock, a seed, and six others = 8 隻。雜誌解答：A。"}]},
+  {t:"cloze",id:"a2c",bank:["kept me company","take care of","came out","comes with","less","interest","download","corner"],q:[["My cat ___ when I was sick.","kept me company"],["Not everyone has time to ___ a real pet.","take care of"],["The first desktop pet ___ in the mid-1980s.","came out"],["This program ___ eight desktop pets.","comes with"],["Desktop pets make work ___ boring.","less"],["Video games don't ___ Teresa.","interest"],["You can ___ a new pet from the Internet.","download"],["My desktop pet sleeps in the ___ of the screen.","corner"]]},
+  {t:"write",id:"a2wr",title:"設計我的桌面寵物",prompt:"如果你能設計一隻桌面寵物，它長什麼樣子？會做什麼？怎麼陪伴你？",hints:["My desktop pet is a ...","It can ...","It keeps me company when ...","It makes my homework less ...","It comes with ..."],min:35}]},
+ {h:"進階閱讀 3 ABC 長知識 · Zero-Sum Game vs. Positive-Sum Game 零和賽局 vs. 正和賽局",s:"pp.48–49 ｜ 11/21–22",b:[
+  {t:"vocab",id:"a3w",w:[["sports","n.","運動；體育（總稱）"],["player","n.","球員；選手"],["score","v.","得（分）"],["point","n.","分數"],["lose","v.","輸；失敗（lose-lost-lost）"],["loss","n.","損失"],["gain","n./v.","收穫；獲得"],["zero-sum","adj.","零和的（一方得利、另一方損失）",1],["positive-sum","adj.","正和的（雙方皆受益）",1],["relationship","n.","（人際）關係",1],["situation","n.","情況",1],["viewer","n.","觀看者",1]]},
+  {t:"phrases",id:"a3p",p:[["One ..., and the other ...","一個……，另一個……（兩者之中）","I have two sons. One likes soccer, and the other likes tennis."],["fight over","爭奪……；為……爭吵（fight-fought-fought）","There's no need to fight over small things."],["work together","合作；同心協力","The students worked together to clean the classroom."],["try for","爭取","Many people try for the same prize."]]},
+  {t:"sort",id:"a3s",title:"小試身手：零和還是正和？",tag:"1–6 為雜誌題，7–10 為自編",cats:["Z 零和","P 正和"],items:[["1. Two students want the last window seat on the bus. One gets it, and the other doesn't.",0],["2. Mia agrees to teach Leo math, and he will help her with English.",1],["3. A group of friends build a tree house together. Everyone can use it at any time.",1],["4. Two players play chess. One wins, and the other loses.",0],["5. A student puts a video with study tips online. Viewers like it.",1],["6. Many people try for the same prize, but only one person can go home with it.",0],["7. Two brothers fight over the last piece of cake.",0],["8. Classmates share their notes before a test, and everyone does better.",1],["9. Two teams play in the final. Only one team gets the cup.",0],["10. A baker gives old bread to a farmer, and the farmer gives her fresh eggs.",1]]},
+  {t:"mcq",id:"a3r",title:"閱讀理解",q:[
+   {q:"In a zero-sum game, one side's gain is ___.",o:["the other side's loss","both sides' gain","nobody's business","a big prize"],a:0},
+   {q:"Where else can we see zero-sum games?",o:["In relationships and business deals","Only in chess","Only in sports","Nowhere else"],a:0},
+   {q:"In a positive-sum game, what do the two sides do?",o:["They work together, and each gains something.","They fight over the same thing.","One wins, and the other loses.","They stop playing."],a:0}]},
+  {t:"write",id:"a3wr",title:"把零和變正和",prompt:"想一個你生活中的「零和」情況，寫出你們可以怎麼合作，讓它變成「正和」。",hints:["One ..., and the other ...","fight over","work together","gain","Both of us ..."],min:35,model:"My sister and I always fight over the computer. One of us uses it, and the other gets angry. Now we work together. I use it for one hour, and then she uses it. We also help each other with homework, so both of us gain something."}]},
+ {h:"聽說圖寫 · Keep Track of Savings and Spending 記帳",s:"pp.50–51 ｜ 11/28–29 ｜ 先看 p.50 Mark 的筆記本再作答",b:[
+  {t:"vocab",id:"a4w",w:[["savings","n.","儲蓄"],["spending","n.","花費"],["sticker","n.","貼紙"],["chore","n.","家事"],["claw machine","n.","夾娃娃機"],["goal","n.","目標"],["wish list","n.","願望清單"],["keep track of","phr.","記錄；追蹤"],["sweep the floor","phr.","掃地"],["do the dishes","phr.","洗碗"]]},
+  {t:"mcq",id:"a4q1",title:"Q1 哪個長條圖最能表示 Mark 2025 年前四個月的儲蓄？",tag:"看 p.50 Monthly Savings",pre:"四根長條依序代表 January → April。",q:[{q:"Which picture best shows Mark's savings in the first four months of 2025?",nosay:1,fix:1,o:[bars("A",[20,15,30,35]),bars("B",[3,15,6,35]),bars("C",[6,12,24,35]),bars("D",[6,7,10,35])],a:0,ex:"20 → 15（下降）→ 30 → 35，只有 A 是「中、低、高、最高」。"}]},
+  {t:"cloze",id:"a4q2",title:"Q2 用選項完成句子",tag:"選項：more than / most / almost / less than / $7 / $16",bank:["most","almost","more than","$16","less than"],q:[["The chore Mark did ___ often the first week of December was sweeping the floor.","most","掃地 6 天、洗碗 5 天、整理客廳 5 天"],["He did it ___ every day.","almost","7 天中有 6 天（12/2 沒掃）"],["He also did the dishes and cleaned the living room on ___ half the days.","more than","各 5 天，超過 7 天的一半"],["He earned ___.","$16","6＋5＋5＝16 顆星，一顆星 $1"],["He spent ___ half the money.","less than","花了 $7，比 $16 的一半（$8）少"]]},
+  {t:"mcq",id:"a4q",title:"Q3–Q5",q:[
+   {q:"3. Which is probably Mark's favorite hobby?",o:["Sports.","Reading.","Drawing.","Cooking."],a:1,fix:1,ex:"2025 年花費中 Books 占 40%，最多。"},
+   {q:"4. At this time, how much more money does Mark need to reach his goal?",o:["$21","$30","$9","$350"],a:0,fix:1,ex:"1–11 月共存 $320，加上 12 月第一週 $16 − $7 ＝ $9，共 $329；$350 − $329 ＝ $21。"},
+   {q:"5. If Mark wants to keep over half of this year's savings, which two items can he buy?",o:["A new watch and video games","A new watch and a camera","A camera and video games","All three items"],a:0,fix:1,ex:"$329 的一半約 $164.5，只能花比這更少：$100＋$60＝$160 ✔；$220、$180 都超過。"}]},
+  {t:"write",id:"a4wr",title:"我的記帳小計畫",prompt:"仿照 Mark，寫你的家事、存錢目標和願望清單。至少用一個比較用語。",hints:["I help around the house by ...","My savings goal is ...","I spend more than / less than ...","almost every day","keep track of"],min:35}]}
+]},
+{id:'wx',name:'⭐ 延伸',color:'--wx',band:['延伸學習　每日一句 · 燒話題 · 畫中有話 · 電影速報','pp.6–8、26–27、42–43 ｜ 每天一句、每週一話題'],units:[
+ {h:'每日一句 · Running Errands 跑腿辦事的英語實用句',s:'pp.6–7 ｜ Week 1–4 共 24 句，每天聽一句（Track 01）',b:[
+  {t:'vocab',id:'xew',title:'跑腿要去的地方',w:[['errand','n.','差事；跑腿'],['post office','n.','郵局'],['bakery','n.','麵包店'],['bank','n.','銀行'],['phone company','n.','電信公司'],['car wash','n.','洗車場'],['department store','n.','百貨公司'],['dry cleaner','n.','乾洗店'],['convenience store','n.','便利商店'],['library','n.','圖書館'],['hardware store','n.','五金行'],['farmers market','n.','農夫市集'],['dentist','n.','牙醫'],['bill','n.','帳單'],['bankbook','n.','存摺'],['update','v.','更新；補登'],['checkup','n.','檢查']]},
+  {t:'mcq',id:'xeq',title:'該去哪裡辦？',tag:'情境判斷',q:[{q:'I want to send a package to my aunt.',o:['the post office','the bakery','the car wash','the library'],a:0},{q:'We need a birthday cake for the party.',o:['the bakery','the hardware store','the dentist','the bank'],a:0},{q:'My wool coat needs special cleaning.',o:['the dry cleaner','the car wash','the farmers market','the phone company'],a:0},{q:'I need some nails and a hammer.',o:['the hardware store','the department store','the post office','the bakery'],a:0},{q:'It\'s time for my teeth checkup.',o:['the dentist','the bank','the library','the car wash'],a:0},{q:'I want fresh fruit from local farmers.',o:['the farmers market','the dry cleaner','the phone company','the post office'],a:0},{q:'Our car is really dirty.',o:['the car wash','the convenience store','the bakery','the dentist'],a:0},{q:'I want to pay my phone bill on my way home.',o:['the convenience store','the farmers market','the dry cleaner','the hardware store'],a:0},{q:'These books are due today.',o:['the library','the bank','the bakery','the car wash'],a:0},{q:'This shirt is too small. I want to return it.',o:['the department store','the post office','the dentist','the library'],a:0}]},
+  {t:'phrases',id:'xep',p:[['run an errand / run errands','跑腿；辦事','Scott is running an errand for his grandma.'],['make a quick stop at','順道去一下……','Let\'s make a quick stop at the bank.'],['take care of','處理','I need to take care of some things at the post office.'],['pick up','去拿（東西）','Did you pick up the cake?'],['drop (sth) off at','把（某物）送到……','Can you drop this coat off at the dry cleaner?'],['be out of','用完了','We\'re out of eggs.'],['take the car in for','把車開去（保養、維修）','Dad took the car in for a checkup.'],['take a day off','請一天假','Mom took a day off to run some errands.']]},
+  {t:'cloze',id:'xec',bank:['run an errand','quick stop','take care of','out of','drop','took a day off','pick up','do your own'],q:[['Can you ___ for me? I need some milk.','run an errand'],['I have to make a ___ at the bakery.','quick stop'],['I need to ___ some things at the bank.','take care of'],['We\'re ___ rice. Let\'s buy some.','out of'],['Please ___ this letter off at the post office.','drop'],['Rick ___ to go to the dentist.','took a day off'],['When do I need to ___ the flowers?','pick up'],['You\'re old enough. Why don\'t you ___ errands?','do your own']]},
+  {t:'speak',id:'xes',title:'週末跑腿清單',prompt:'用「I have to ... / I need to ... / My last stop is ...」說出你這週末要跑的三個地方，然後錄音。',lines:[['First, I have to go to the post office to send a package.','首先我得去郵局寄包裹。'],['Then I need to make a quick stop at the bakery.','接著要順道去麵包店。'],['My last stop is the library. Today is the last day to return my books.','最後一站是圖書館，今天是還書最後一天。']]}]},
+ {h:'燒話題 · Hot Topics',s:'p.8 ｜ K-shaped society · anaerobic exercise · solar eclipse',b:[
+  {t:'vocab',id:'xhw',w:[['K-shaped society','n.','K 型社會'],['gap','n.','差距'],['wealth','n.','財富'],['economy','n.','經濟'],['poverty','n.','貧困；貧窮'],['financial','adj.','財務的'],['anaerobic exercise','n.','無氧運動'],['aerobic exercise','n.','有氧運動'],['muscle','n.','肌肉'],['weight','n.','體重'],['strength','n.','力氣；力量'],['workout','n.','鍛鍊；健身'],['solar eclipse','n.','日食'],['orbit','n.','軌道'],['observe','v.','觀察；觀測'],['telescope','n.','望遠鏡'],['astronomy','n.','天文學']]},
+  {t:'mcq',id:'xhq',title:'話題小測驗',q:[{q:'In a K-shaped society, what happens to the gap between rich and poor?',o:['It gets bigger.','It disappears.','It stays the same.','It gets smaller.'],a:0},{q:'Which one is anaerobic exercise?',o:['Weight training','Slow walking','Easy swimming','Long bike rides'],a:0,ex:'無氧運動：重訓、短跑、跳躍——時間短但需要力量。'},{q:'After a workout, which food helps your muscles recover?',o:['Eggs, milk, and fish','Candy','Soda','Potato chips'],a:0},{q:'During a solar eclipse, what moves between the sun and the Earth?',o:['The moon','A cloud','Mars','A plane'],a:0},{q:'What is the safe way to watch a solar eclipse?',o:['Protect your eyes and never look directly at the sun.','Look at the sun with no glasses.','Use a telescope with no filter.','Look at it for a long time.'],a:0}]},
+  {t:'write',id:'xhwr',title:'選一個話題說說你的看法',prompt:'三選一：你覺得 K 型社會的差距要怎麼縮小？你喜歡有氧還是無氧運動？你看過日食嗎？寫 3 句。',hints:['I think ...','gap','workout','muscle','observe','telescope'],min:25}]},
+ {h:'畫中有話 · A Doctor\'s Day 醫師的一天',s:'pp.26–27 ｜ Track 23',b:[
+  {t:'vocab',id:'xdw',w:[['quick','adj.','快速的'],['bite','n.','少量食物'],['return','v.','回到；返回'],['duty','n.','工作；職責'],['schedule','n.','行程表',1],['doctor','n.','醫師（Dr.）'],['hospital','n.','醫院'],['operation','n.','手術'],['patient','n.','病人'],['perform','v.','進行'],['out','adv.','昏迷地；無意識地'],['appointment','n.','（門診）預約'],['rounds','n.','巡視（常用複數）'],['emergency call','n.','緊急通知；緊急呼叫'],['file','n.','（病歷）檔案'],['nurse','n.','護理師']]},
+  {t:'phrases',id:'xdp',p:[['excuse me','不好意思；打擾一下（插入語）','Excuse me, there\'s a phone call for you.'],['deal with','處理；應付（deal-dealt-dealt）','The teacher is dealing with a new student.'],['have a quick bite','快速吃點東西','Let\'s have a quick bite before class.'],['make (one\'s) rounds','巡房；巡視','The nurse makes her rounds every two hours.']]},
+  {t:'order',id:'xdo',title:'Dr. Quinn 的一天：排出順序',pre:'看 pp.26–27 的漫畫，把 Dr. Quinn 的行程排好（句子為學習單改寫）。',items:['She gets to the hospital for work.','She checks her schedule in her office.','She talks with a patient before the operation.','She performs the operation.','She has a quick bite after the operation.','She sees her patients for the day.','She makes her rounds.','She deals with an emergency call.','She goes back to her office for other duties.','She leaves for the day.']},
+  {t:'write',id:'xdwr',title:'某某的一天',prompt:'模仿〈A Doctor\'s Day〉，寫一位家人或你自己的一天（現在式，至少 5 個步驟）。',hints:['arrives at ...','checks ...','has a quick bite','deals with ...','returns to ...','leaves for the day'],min:40}]},
+ {h:"電影速報 · Hexed《歡迎光臨魔法秘境》",s:"pp.42–43 ｜ 上映日期：2026 年 11 月 26 日",b:[
+  {t:"vocab",id:"xmw",w:[["hexed","adj.","被施魔法的"],["ordinary","adj.","普通的"],["teenage","adj.","青少年的",1],["bracelet","n.","手鍊；手環",1],["wrist","n.","手腕"],["magical","adj.","有魔力的"],["power","n.","能力；力量"],["witch","n.","女巫",1],["master","v.","掌控；精通"],["discover","v.","發現"],["secret","n.","秘密"],["forever","adv.","永遠地",1]]},
+  {t:"phrases",id:"xmp",p:[["fit in","融入；合群","It took Amy a month to fit in at her new school."],["fall off","從……掉落","My hat fell off my head in the wind."],["find out","發現；查明","I found out that my brother ate my cake."],["be after (sb)","追捕；追著（某人）不放","The police are after the thief."]]},
+  {t:"tf",id:"xmtf",title:"電影簡介是非題",q:[["Billie Doe fits in well at her high school.",false,"她看起來與眾不同，在學校格格不入。"],["Strange things start to happen after Billie's bracelet breaks.",true],["Hexe is a magical world of witches.",true,"Hexe 在德語中是「女巫」的意思。"],["Billie learns to master her powers alone, with no help.",false,"她得到一群魔法寶物的幫助。"],["Some powerful witches are after Billie because she is discovering family secrets.",true]]},
+  {t:"write",id:"xmwr",title:"如果我有魔法能力",prompt:"如果你像 Billie 一樣發現自己有魔法能力，你希望是什麼能力？你會用它做什麼？",hints:["I found out that I have ...","I would use it to ...","I hope ...","fit in","master"],min:30}]}
+]},
+{id:"cards",name:"🃏 單字卡",color:"--cards",band:["單字卡　pp.69–72 官方例句填空","把雜誌單字卡剪下來之前，先在這裡打字檢查自己記住了沒（答案依句子需要的形態，如 booked、sights）"],units:[
+ {h:"第一週單字卡",s:"p.12・p.13・p.14 本月焦點｜p.16・p.17 玩味生活",b:[{t:"type",id:"c1",title:"填入單字卡的字",ph:"word",say:1,full:1,q:CARDS.slice(0,20)}]},
+ {h:"第二週單字卡",s:"p.20・p.21・p.22 活用 ABC｜p.24・p.25 世界好望角｜p.26 畫中有話",b:[{t:"type",id:"c2",title:"填入單字卡的字",ph:"word",say:1,full:1,q:CARDS.slice(20,44)}]},
+ {h:"第三週單字卡",s:"p.30・p.31 文法補給站｜p.32・p.33・p.34 短篇故事集",b:[{t:"type",id:"c3",title:"填入單字卡的字",ph:"word",say:1,full:1,q:CARDS.slice(44,64)}]},
+ {h:"第四週單字卡",s:"p.35・p.36・p.37 流行最前線｜p.38・p.39 品格英語",b:[{t:"type",id:"c4",title:"填入單字卡的字",ph:"word",say:1,full:1,q:CARDS.slice(64,84)}]},
+ {h:"🔀 綜合挑戰",s:"全部 84 字隨機抽 15 題，按「換一組」再挑戰",b:[{t:"type",id:"cmix",title:"隨機 15 題",ph:"word",say:1,full:1,pick:15,q:CARDS}]}
+]}
+];
+
+/* ========== 首頁：進度表 ========== */
+var CAL=[[2,'w1','UNIT 1','飯店大廳大小事 (A)','p.12'],[3,'w1','UNIT 1','飯店大廳大小事 (B)','p.13'],[4,'w1','UNIT 1','飯店大廳大小事 (C)','p.14'],[5,'w1','UNIT 2','不消費日 (1)','p.16'],[6,'w1','UNIT 2','不消費日 (2)','p.17'],['7/8','adv','進階閱讀 1','表達感謝的日子','pp.44–45'],
+[9,'w2','UNIT 3','用英語表達感受 (A)','p.20'],[10,'w2','UNIT 3','用英語表達感受 (B)','p.21'],[11,'w2','UNIT 3','用英語表達感受 (C)','p.22'],[12,'w2','UNIT 4','修理咖啡館 (1)','p.24'],[13,'w2','UNIT 4','修理咖啡館 (2)','p.25'],['14/15','adv','進階閱讀 2','桌面寵物','pp.46–47'],
+[16,'w3','UNIT 5','過去簡單式 (A)','p.30'],[17,'w3','UNIT 5','過去簡單式 (B)','p.31'],[18,'w3','UNIT 6','〈遺失的郵件〉(1)','p.32'],[19,'w3','UNIT 6','〈遺失的郵件〉(2)','p.33'],[20,'w3','UNIT 6','〈遺失的郵件〉(3)','p.34'],['21/22','adv','進階閱讀 3','零和賽局 vs. 正和賽局','pp.48–49'],
+[23,'w4','UNIT 7','身體密碼 (1)','p.35'],[24,'w4','UNIT 7','身體密碼 (2)','p.36'],[25,'w4','UNIT 7','身體密碼 (3)','p.37'],[26,'w4','UNIT 8','化嫉妒為成長 (1)','p.38'],[27,'w4','UNIT 8','化嫉妒為成長 (2)','p.39'],['28/29','adv','聽說圖寫','聽說圖寫：記帳','pp.50–51'],[30,'w4','UNIT 9','我最喜歡的電玩遊戲','pp.40–41']];
+var CALD=store.get('cal',{});
+function colorOf(id){var p=DATA.find(function(x){return x.id===id});return 'var('+(p?p.color:'--w0')+')';}
+function renderHome(sec){sec.append(h('div',{class:'band'},h('h2',null,'11 月學習地圖'),h('p',null,'每週對照雜誌 p.9「校園週考進度表」：第一週 Units 1–2 · 第二週 Units 3–4 · 第三週 Units 5–6 · 第四週 Units 7–9 · 📝 小考 Test 1–7 · 週末：進階閱讀 1–3、聽說圖寫 · 延伸：每日一句／燒話題／畫中有話／電影速報 · 單字卡 pp.69–72')));
+  var u=h('div',{class:'unit'});u.append(h('h2',null,'📊 我的成績 ',h('small',null,'點卡片直接前往該週')));var d=h('div',{class:'dash',id:'dash'});u.append(h('div',{class:'block'},d));sec.append(u);
+  var u2=h('div',{class:'unit'});u2.append(h('h2',null,'🗓️ 學習進度自我檢測表 ',h('small',null,'完成當日課程後點一下打勾（p.9）')));
+  var b2=h('div',{class:'block'});b2.append(h('div',{class:'calh'},['MON','TUE','WED','THUR','FRI','SAT/SUN'].map(function(x){return h('div',null,x)})));var cal=h('div',{class:'cal',style:'margin-top:6px'});
+  CAL.forEach(function(c){var k=String(c[0]);var cd=h('div',{class:'cd'+(CALD[k]?' done':''),role:'button',tabindex:'0'},h('div',{class:'d'},k),h('span',{class:'u',style:'background:'+colorOf(c[1])},c[2]),h('div',null,c[3]),h('div',{class:'pg'},c[4]));
+    cd.onclick=function(){CALD[k]=!CALD[k];store.set('cal',CALD);cd.classList.toggle('done',!!CALD[k])};cal.append(cd)});
+  b2.append(cal);u2.append(b2);sec.append(u2);
+  var u3=h('div',{class:'unit'});u3.append(h('h2',null,'🎧 官方音檔與使用方式'));
+  u3.append(h('div',{class:'block'},h('div',{html:'・雜誌每課首頁左上角 QR code 可聽課文朗讀（正常／慢速）與講解；也可在 Apple Podcast、Spotify、KKBOX、SoundOn 搜尋「LiveABC」。<br>・學習單裡的 🔊 是瀏覽器朗讀，方便隨時聽單字與例句；勾選上方「🐢 慢速朗讀」可放慢。<br>・每一課的流程：<b>先聽單字 → 讀課文 → 做理解題 → 語塊填空 → 開口錄音 → 寫作輸出</b>。<br>・作答與寫作會自動存在這台裝置；換裝置不會同步。'}),
+    h('a',{href:'https://qrcode.liveabc.com/magazine/789d1b88-9a31-480b-8d45-56bfda1577a1',target:'_blank',rel:'noopener',class:'btn',style:'display:inline-block;text-decoration:none;margin-top:8px'},'🔗 開啟本期官方音檔頁'),
+    h('button',{class:'btn ghost',type:'button',onclick:function(){if(confirm('確定清除本期所有作答、寫作與打勾紀錄？')){try{Object.keys(localStorage).forEach(function(k){if(k.indexOf(PREFIX)===0)localStorage.removeItem(k)})}catch(e){}location.reload()}}},'🗑️ 清除全部紀錄')));
+  sec.append(u3);}
+function renderDash(){var d=document.getElementById('dash');if(!d)return;d.innerHTML='';
+  DATA.forEach(function(p){if(p.id==='home')return;var s=secScore(p.id);var pct=s.t?Math.round(s.c/s.t*100):0;
+    d.append(h('button',{class:'dc',type:'button',style:'background:var('+p.color+')','data-target':p.id,onclick:function(){go(p.id)}},h('b',null,p.name),h('span',null,p.band[0].split('　')[1]||''),h('div',null,s.t?('答對 '+s.c+' / '+s.t+'（'+pct+'%）'):'尚未作答'),h('div',{class:'bar'},h('i',{style:'width:'+pct+'%'}))))});}
+
+/* ========== 組裝與導覽 ========== */
+var main=document.getElementById('main'),nav=document.getElementById('nav');
+DATA.forEach(function(p){var sec=h('section',{class:'page',id:'sec-'+p.id,style:'--c:var('+p.color+')'});
+  nav.append(h('button',{type:'button','data-target':p.id,style:'--c:var('+p.color+')',onclick:function(){go(p.id)}},p.name,h('span',{class:'sc',id:'nsc_'+p.id})));
+  if(p.id==='home')renderHome(sec);
+  else{sec.append(h('div',{class:'band'},h('h2',null,p.band[0]),h('p',null,p.band[1])));
+    p.units.forEach(function(u){var ue=h('div',{class:'unit'});ue.append(h('h2',null,u.h,' ',h('small',null,u.s)));u.b.forEach(function(b){ue.append(make(b,p.id))});sec.append(ue)});
+    var i=DATA.indexOf(p);var nx=DATA[i+1];if(nx)sec.append(h('button',{class:'btn',type:'button','data-target':nx.id,onclick:function(){go(nx.id)}},'下一站：'+nx.name+' →'));}
+  main.append(sec);});
+function go(id){Array.prototype.forEach.call(document.querySelectorAll('section.page'),function(s){s.classList.toggle('on',s.id==='sec-'+id)});
+  Array.prototype.forEach.call(nav.children,function(b){b.classList.toggle('on',b.getAttribute('data-target')===id)});
+  store.set('tab',id);window.scrollTo(0,0);try{speechSynthesis.cancel()}catch(e){}}
+go(store.get('tab','home'));updScores();
+</script>
+</body>
+</html>
