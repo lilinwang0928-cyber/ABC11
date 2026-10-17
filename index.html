@@ -143,38 +143,56 @@ function speak(t){if(!window.speechSynthesis)return;try{speechSynthesis.cancel()
 function sayBtn(t){return h('button',{class:'say',type:'button',title:'朗讀',onclick:function(e){e.stopPropagation();speak(t)}},'🔊');}
 
 /* ========== 錄音 ========== */
-/* ========== 錄音引擎（全站共用，一次只錄一個） ========== */
-var RECX={state:'idle',mr:null,stream:null,owner:null,timer:null,pending:null};
-function pickMime(){if(!window.MediaRecorder||!MediaRecorder.isTypeSupported)return '';var c=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'];for(var i=0;i<c.length;i++){if(MediaRecorder.isTypeSupported(c[i]))return c[i]}return '';}
+/* ========== 錄音引擎 v3（全站共用，一次只錄一個） ========== */
+var IS_IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+var RECX={state:'idle',mr:null,stream:null,owner:null,timer:null,pending:null,idle:null};
+var PLAYER=new Audio();PLAYER.preload='auto';PLAYER.setAttribute('playsinline','');var AU_UNLOCKED=false;
+var SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';
+function unlockAudio(){if(AU_UNLOCKED)return;AU_UNLOCKED=true;try{PLAYER.src=SILENT;var p=PLAYER.play();if(p&&p.catch)p.catch(function(e){if(e&&e.name==='NotAllowedError')AU_UNLOCKED=false})}catch(e){AU_UNLOCKED=false}}
+function stopAllAudio(){try{speechSynthesis.cancel()}catch(e){}try{PLAYER.pause()}catch(e){}Array.prototype.forEach.call(document.querySelectorAll('audio'),function(a){try{a.pause()}catch(e){}});}
+function pickMime(){if(!window.MediaRecorder||!MediaRecorder.isTypeSupported)return '';var c=IS_IOS?['audio/mp4','audio/webm;codecs=opus','audio/webm']:['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'];for(var i=0;i<c.length;i++){if(MediaRecorder.isTypeSupported(c[i]))return c[i]}return '';}
+function releaseMic(){clearTimeout(RECX.idle);if(RECX.stream&&RECX.state==='idle'){RECX.stream.getTracks().forEach(function(t){t.stop()});RECX.stream=null}}
+document.addEventListener('visibilitychange',function(){if(document.hidden){recStop();setTimeout(releaseMic,300)}});
+function getMic(){var s=RECX.stream;if(s&&s.active&&s.getAudioTracks().some(function(t){return t.readyState==='live'}))return Promise.resolve(s);
+  return navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}}).then(function(st){RECX.stream=st;
+    var tr=st.getAudioTracks()[0];if(!tr||!tr.muted)return st;
+    return new Promise(function(res){var done=false;function go(){if(!done){done=true;res(st)}}tr.addEventListener('unmute',go,{once:true});setTimeout(go,800)});});}
 function recStart(owner,maxMs,onState,onDone){
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){alert('這個瀏覽器不支援錄音，請改用 Chrome 或 Safari 最新版。');return}
+  unlockAudio();
   if(RECX.state==='starting')return;
-  if(RECX.state==='rec'){var same=RECX.owner===owner;if(!same)RECX.pending=function(){recStart(owner,maxMs,onState,onDone)};recStop();return}
-  try{speechSynthesis.cancel()}catch(e){}
+  if(RECX.state==='rec'){if(RECX.owner!==owner)RECX.pending=function(){recStart(owner,maxMs,onState,onDone)};recStop();return}
+  stopAllAudio();clearTimeout(RECX.idle);
   RECX.state='starting';RECX.owner=owner;onState('starting');
-  navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}}).then(function(stream){
+  getMic().then(function(stream){
+    if(RECX.owner!==owner){return}
     var mime=pickMime();var mr;try{mr=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream)}catch(e){mr=new MediaRecorder(stream)}
-    var chunks=[],t0=Date.now();RECX.mr=mr;RECX.stream=stream;
+    var chunks=[],t0=Date.now();RECX.mr=mr;
     mr.ondataavailable=function(ev){if(ev.data&&ev.data.size)chunks.push(ev.data)};
-    mr.onstop=function(){clearTimeout(RECX.timer);stream.getTracks().forEach(function(t){t.stop()});
-      var blob=new Blob(chunks,{type:mr.mimeType||mime||'audio/webm'});var dur=Date.now()-t0;
-      RECX.state='idle';RECX.mr=null;RECX.stream=null;RECX.owner=null;
-      if(blob.size<600||dur<400){onState('short')}else{onState('idle');onDone(blob)}
-      var p=RECX.pending;RECX.pending=null;if(p)setTimeout(p,150);};
+    mr.onstop=function(){clearTimeout(RECX.timer);var blob=new Blob(chunks,{type:mr.mimeType||mime||'audio/webm'});var dur=Date.now()-t0;
+      RECX.state='idle';RECX.mr=null;RECX.owner=null;
+      if(IS_IOS)releaseMic();else{clearTimeout(RECX.idle);RECX.idle=setTimeout(releaseMic,20000)}
+      var p=RECX.pending;RECX.pending=null;
+      if(blob.size<600||dur<400){onState('short');if(p)setTimeout(p,120);return}
+      var url=URL.createObjectURL(blob);var probe=new Audio();var fin=false;
+      function ok(){if(fin)return;fin=true;onState('idle');onDone(url);if(p)setTimeout(p,120)}
+      function bad(){if(fin)return;fin=true;URL.revokeObjectURL(url);onState('fail');if(p)setTimeout(p,120)}
+      probe.addEventListener('loadedmetadata',ok);probe.addEventListener('canplay',ok);probe.addEventListener('error',bad);probe.preload='auto';probe.src=url;try{probe.load()}catch(e){}setTimeout(ok,1200);};
     mr.onerror=function(){try{mr.stop()}catch(e){}};
-    mr.start(200);RECX.state='rec';onState('rec');
-    RECX.timer=setTimeout(function(){if(RECX.mr===mr&&mr.state==='recording')mr.stop()},maxMs);
-  }).catch(function(err){RECX.state='idle';RECX.owner=null;onState('idle');
-    alert(err&&err.name==='NotAllowedError'?'麥克風權限被拒絕：請在網址列左邊的鎖頭圖示允許「麥克風」，再重新整理。':'無法使用麥克風：'+(err&&err.message||err));});}
-function recStop(){if(RECX.mr&&RECX.mr.state==='recording'){try{RECX.mr.requestData()}catch(e){}RECX.mr.stop()}}
-function playBlobAudio(au){try{speechSynthesis.cancel()}catch(e){}try{au.pause();au.currentTime=0}catch(e){}var pr=au.play();if(pr&&pr.catch)pr.catch(function(){});}
+    mr.start(250);RECX.state='rec';onState('rec');
+    RECX.timer=setTimeout(function(){if(RECX.mr===mr&&mr.state==='recording')recStop()},maxMs);
+  }).catch(function(err){RECX.state='idle';RECX.owner=null;RECX.stream=null;onState('idle');
+    alert(err&&err.name==='NotAllowedError'?'麥克風權限被拒絕：請在網址列左邊的鎖頭圖示允許「麥克風」，再重新整理。':err&&err.name==='NotReadableError'?'麥克風正被其他程式使用，請關閉其他使用麥克風的分頁或 App 後再試。':'無法使用麥克風：'+(err&&err.message||err));});}
+function recStop(){var mr=RECX.mr;if(mr&&mr.state==='recording'){try{mr.requestData()}catch(e){}setTimeout(function(){try{if(mr.state==='recording')mr.stop()}catch(e){}},120)}}
+function playURL(url,tipEl){if(!url)return;stopAllAudio();PLAYER.src=url;try{PLAYER.load()}catch(e){}var pr=PLAYER.play();
+  if(pr&&pr.catch)pr.catch(function(){if(tipEl)tipEl.textContent='再按一次 ▶️ 播放'});}
 
 /* 寫作／開口說用的長錄音 */
-function recorder(){var au=h('audio',{controls:'',preload:'auto',style:'display:none;max-width:100%;margin-top:6px'});var url=null;var owner={};
+function recorder(){var au=h('audio',{controls:'',preload:'auto',playsinline:'',style:'display:none;max-width:100%;margin-top:6px'});var url=null;var owner={};
   var b=h('button',{class:'btn ghost',type:'button'},'🎙️ 錄音');var st=h('span',{class:'zhl'});
   b.onclick=function(){if(RECX.owner===owner&&RECX.state==='rec'){recStop();return}
-    recStart(owner,90000,function(s){b.classList.toggle('rec',s==='rec');b.textContent=s==='rec'?'⏹ 停止錄音':s==='starting'?'⏳ 開啟麥克風…':(url?'🎙️ 重錄':'🎙️ 錄音');st.textContent=s==='rec'?' 錄音中…（最長 90 秒）':s==='short'?' 錄音太短，請再錄一次':''},
-      function(blob){if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);au.src=url;au.load();au.style.display='block';b.textContent='🎙️ 重錄'});};
+    recStart(owner,90000,function(s){b.classList.toggle('rec',s==='rec');b.textContent=s==='rec'?'⏹ 停止錄音':s==='starting'?'⏳ 開啟麥克風…':(url?'🎙️ 重錄':'🎙️ 錄音');st.textContent=s==='rec'?' 錄音中…（最長 90 秒）':s==='short'?' 錄音太短，請再錄一次':s==='fail'?' 這次沒錄到聲音，請再錄一次':''},
+      function(u){if(url)URL.revokeObjectURL(url);url=u;au.src=url;au.load();au.style.display='block';b.textContent='🎙️ 重錄'});};
   return h('div',null,b,st,au);}
 
 /* ========== 成績 ========== */
@@ -228,18 +246,18 @@ function renderWB(){var sec=document.getElementById('sec-wrong');if(!sec)return;
     card.append(fb,h('div',{class:'zhl',style:'text-align:right'},'錯過 '+(it.miss||1)+' 次'));bl.append(card);});}
 
 /* ========== 單字錄音回放 ========== */
-function miniRec(word){var wrap=h('span',{class:'mrec'});var url=null;var owner={};var au=new Audio();au.preload='auto';
+function miniRec(word){var wrap=h('span',{class:'mrec'});var url=null;var owner={};
   var tip=h('span',{class:'rtip'});
   var play=h('button',{class:'say',type:'button',title:'播放我的錄音',style:'display:none'},'▶️');
   var cmp=h('button',{class:'say',type:'button',title:'先聽標準音，再聽我的',style:'display:none'},'🔁');
   var rb=h('button',{class:'say',type:'button',title:'錄音（再按一次停止，最長 4 秒）'},'🎙️');
-  play.onclick=function(e){e.stopPropagation();if(url)playBlobAudio(au)};
-  cmp.onclick=function(e){e.stopPropagation();if(!url)return;try{speechSynthesis.cancel()}catch(x){}var fired=false;function mine(){if(fired)return;fired=true;setTimeout(function(){playBlobAudio(au)},250)}
+  play.onclick=function(e){e.stopPropagation();AU_UNLOCKED=true;tip.textContent='';playURL(url,tip)};
+  cmp.onclick=function(e){e.stopPropagation();if(!url)return;unlockAudio();stopAllAudio();var fired=false;function mine(){if(fired)return;fired=true;setTimeout(function(){playURL(url,tip)},250)}
     var u=new SpeechSynthesisUtterance(word);var v=pickV();if(v)u.voice=v;u.lang='en-US';u.rate=0.85;u.onend=mine;u.onerror=mine;
     setTimeout(function(){speechSynthesis.speak(u)},60);setTimeout(mine,1500+word.length*120);};
   rb.onclick=function(e){e.stopPropagation();if(RECX.owner===owner&&RECX.state==='rec'){recStop();return}
-    recStart(owner,4000,function(s){rb.classList.toggle('recing',s==='rec');rb.textContent=s==='rec'?'⏹':s==='starting'?'⏳':'🎙️';tip.textContent=s==='rec'?'錄音中…':s==='short'?'太短，再錄一次':''},
-      function(blob){if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);au.src=url;au.load();play.style.display=cmp.style.display='';tip.textContent='';setTimeout(function(){playBlobAudio(au)},200)});};
+    recStart(owner,4000,function(s){rb.classList.toggle('recing',s==='rec');rb.textContent=s==='rec'?'⏹':s==='starting'?'⏳':'🎙️';tip.textContent=s==='rec'?'錄音中…再按 ⏹ 停':s==='starting'?'準備中…':s==='short'?'太短，再錄一次':s==='fail'?'沒錄到，再錄一次':''},
+      function(u){if(url)URL.revokeObjectURL(url);url=u;play.style.display=cmp.style.display='';tip.textContent='';setTimeout(function(){if(RECX.state==='idle')playURL(url,tip)},150)});};
   wrap.append(rb,play,cmp,tip);return wrap;}
 var VMAP={"shuttle": "sh[u]ttle", "bus": "b[u]s", "doorman": "d[oor]m[a]n", "luggage": "l[u]gg[a]ge", "cart": "c[ar]t", "hallway": "h[a]llw[ay]", "bellhop": "b[e]llh[o]p", "lobby": "l[o]bb[y]", "gift": "g[i]ft", "shop": "sh[o]p", "guest": "gu[e]st", "key": "k[ey]", "card": "c[ar]d", "front": "fr[o]nt", "desk": "d[e]sk", "clerk": "cl[er]k", "elevator": "[e]l[e]v[a]t[or]", "vending": "v[e]nd[i]ng", "machine": "m[a]ch[i]ne", "book": "b[oo]k", "credit": "cr[e]d[i]t", "form": "f[or]m", "borrow": "b[o]rr[ow]", "floor": "fl[oor]", "enter": "[e]nt[er]", "work": "w[or]k", "extra": "[e]xtr[a]", "tap": "t[a]p", "sensor": "s[e]ns[or]", "note": "n[o]te", "arrange": "[a]rr[a]nge", "straight": "str[aigh]t", "airport": "[air]p[or]t", "spoil": "sp[oi]l", "souvenir": "s[ou]v[e]n[ir]", "start": "st[ar]t", "holiday": "h[o]l[i]d[ay]", "season": "s[ea]s[o]n", "deal": "d[ea]l", "thanksgiving": "th[a]nksg[i]v[i]ng", "black": "bl[a]ck", "friday": "fr[i]d[ay]", "artist": "[ar]t[i]st", "raise": "r[ai]se", "even": "[e]v[e]n", "attention": "[a]tt[e]nti[o]n", "wallet": "w[a]ll[e]t", "recycle": "r[e]c[y]cle", "happy": "h[a]pp[y]", "glad": "gl[a]d", "sad": "s[a]d", "angry": "[a]ngr[y]", "mad": "m[a]d", "tired": "t[ir]ed", "bored": "b[or]ed", "excited": "[e]xc[i]t[e]d", "worried": "w[or]r[ie]d", "surprised": "s[ur]pr[i]sed", "scared": "sc[ar]ed", "lonely": "l[o]nel[y]", "nervous": "n[er]v[ou]s", "grateful": "gr[a]tef[u]l", "disappointed": "d[i]s[a]pp[oi]nt[e]d", "surprise": "s[ur]pr[i]se", "second": "s[e]c[o]nd", "scooter": "sc[oo]t[er]", "lovely": "l[o]vel[y]", "garage": "g[a]r[a]ge", "stupid": "st[u]p[i]d", "team": "t[ea]m", "report": "r[e]p[or]t", "boss": "b[o]ss", "project": "pr[o]j[e]ct", "email": "[e]m[ai]l", "program": "pr[o]gr[a]m", "future": "f[u]t[ur]e", "engineer": "[e]ng[i]n[eer]", "negative": "n[e]g[a]t[i]ve", "scholarship": "sch[o]l[ar]sh[i]p", "behind": "b[e]h[i]nd", "meeting": "m[ee]t[i]ng", "tool": "t[oo]l", "skill": "sk[i]ll", "broken": "br[o]k[e]n", "material": "m[a]t[e]r[i][a]l", "cut": "c[u]t", "waste": "w[a]ste", "interest": "[i]nt[er][e]st", "tip": "t[i]p", "site": "s[i]te", "church": "ch[ur]ch", "stop": "st[o]p", "sight": "s[igh]t", "interesting": "[i]nt[er][e]st[i]ng", "fantastic": "f[a]nt[a]st[i]c", "building": "bu[i]ld[i]ng", "happen": "h[a]pp[e]n", "explain": "[e]xpl[ai]n", "driver": "dr[i]v[er]", "hurry": "h[ur]r[y]", "passenger": "p[a]ss[e]ng[er]", "appreciate": "[a]ppr[e]c[i][a]te", "mailman": "m[ai]lm[a]n", "letter": "l[e]tt[er]", "mail": "m[ai]l", "daughter": "d[augh]t[er]", "husband": "h[u]sb[a]nd", "route": "r[ou]te", "father": "f[a]th[er]", "in": "[i]n", "law": "l[aw]", "suggest": "s[u]gg[e]st", "young": "y[ou]ng", "marry": "m[a]rr[y]", "please": "pl[ea]se", "training": "tr[ai]n[i]ng", "wedding": "w[e]dd[i]ng", "death": "d[ea]th", "date": "d[a]te", "forgive": "f[or]g[i]ve", "telegram": "t[e]l[e]gr[a]m", "finger": "f[i]ng[er]", "type": "t[y]pe", "mouse": "m[ou]se", "touch": "t[ou]ch", "password": "p[a]ssw[or]d", "social": "s[o]ci[a]l", "media": "m[e]d[i][a]", "account": "[a]cc[ou]nt", "accept": "[a]cc[e]pt", "voice": "v[oi]ce", "company": "c[o]mp[a]n[y]", "tell": "t[e]ll", "copy": "c[o]p[y]", "movement": "m[o]vem[e]nt", "user": "[u]s[er]", "safety": "s[a]fet[y]", "probably": "pr[o]b[a]bl[y]", "common": "c[o]mm[o]n", "strong": "str[o]ng", "regular": "r[e]g[u]l[ar]", "hack": "h[a]ck", "prize": "pr[i]ze", "sign": "s[i]gn", "anyone": "[a]n[y][o]ne", "honest": "h[o]n[e]st", "jealous": "j[ea]l[ou]s", "jealousy": "j[ea]l[ou]s[y]", "sibling": "s[i]bl[i]ng", "fear": "f[ear]", "notice": "n[o]t[i]ce", "classmate": "cl[a]ssm[a]te", "angle": "[a]ngle", "focus": "f[o]c[u]s", "growth": "gr[ow]th", "positive": "p[o]s[i]t[i]ve", "source": "s[our]ce", "destroy": "d[e]str[oy]", "explore": "[e]xpl[or]e", "adventure": "[a]dv[e]nt[ur]e", "interested": "[i]nt[er][e]st[e]d", "hope": "h[o]pe", "wish": "w[i]sh", "thanks": "th[a]nks", "national": "n[a]ti[o]n[a]l", "fall": "f[a]ll", "dish": "d[i]sh", "vegetable": "v[e]g[e]t[a]ble", "dessert": "d[e]ss[er]t", "pilgrim": "p[i]lgr[i]m", "harvest": "h[ar]v[e]st", "past": "p[a]st", "serve": "s[er]ve", "god": "g[o]d", "yard": "y[ar]d", "giant": "g[i][a]nt", "balloon": "b[a]ll[oo]n", "football": "f[oo]tb[a]ll", "parade": "p[a]r[a]de", "roast": "r[oa]st", "turkey": "t[ur]k[ey]", "stuffing": "st[u]ff[i]ng", "cranberry": "cr[a]nb[e]rr[y]", "sauce": "s[au]ce", "mashed": "m[a]shed", "potatoes": "p[o]t[a]t[oe]s", "and": "[a]nd", "gravy": "gr[a]v[y]", "green": "gr[ee]n", "bean": "b[ea]n", "carrot": "c[a]rr[o]t", "sweet": "sw[ee]t", "potato": "p[o]t[a]t[o]", "pumpkin": "p[u]mpk[i]n", "pie": "p[ie]", "pet": "p[e]t", "trick": "tr[i]ck", "computer": "c[o]mp[u]t[er]", "sheep": "sh[ee]p", "robot": "r[o]b[o]t", "design": "d[e]s[i]gn", "desktop": "d[e]skt[o]p", "monster": "m[o]nst[er]", "react": "r[e][a]ct", "seed": "s[ee]d", "download": "d[ow]nl[oa]d", "error": "[e]rr[or]", "corner": "c[or]n[er]", "mid": "m[i]d", "pointer": "p[oi]nt[er]", "task": "t[a]sk", "sports": "sp[or]ts", "player": "pl[ay][er]", "score": "sc[or]e", "point": "p[oi]nt", "lose": "l[o]se", "loss": "l[o]ss", "gain": "g[ai]n", "zero": "z[e]r[o]", "sum": "s[u]m", "relationship": "r[e]l[a]ti[o]nsh[i]p", "situation": "s[i]t[u][a]ti[o]n", "viewer": "v[iew][er]", "savings": "s[a]v[i]ngs", "spending": "sp[e]nd[i]ng", "sticker": "st[i]ck[er]", "chore": "ch[or]e", "claw": "cl[aw]", "goal": "g[oa]l", "list": "l[i]st", "keep": "k[ee]p", "track": "tr[a]ck", "of": "[o]f", "sweep": "sw[ee]p", "the": "th[e]", "do": "d[o]", "dishes": "d[i]sh[e]s", "errand": "[e]rr[a]nd", "post": "p[o]st", "office": "[o]ff[i]ce", "bakery": "b[a]k[e]r[y]", "bank": "b[a]nk", "phone": "ph[o]ne", "car": "c[ar]", "wash": "w[a]sh", "department": "d[e]p[ar]tm[e]nt", "store": "st[or]e", "dry": "dr[y]", "cleaner": "cl[ea]n[er]", "convenience": "c[o]nv[e]ni[e]nce", "library": "l[i]br[a]r[y]", "hardware": "h[ar]dw[ar]e", "farmers": "f[ar]m[er]s", "market": "m[ar]k[e]t", "dentist": "d[e]nt[i]st", "bill": "b[i]ll", "bankbook": "b[a]nkb[oo]k", "update": "[u]pd[a]te", "checkup": "ch[e]ck[u]p", "shaped": "sh[a]ped", "society": "s[o]c[i][e]t[y]", "gap": "g[a]p", "wealth": "w[ea]lth", "economy": "[e]c[o]n[o]m[y]", "poverty": "p[o]v[er]t[y]", "financial": "f[i]n[a]nci[a]l", "anaerobic": "[a]n[ae]r[o]b[i]c", "exercise": "[e]x[er]c[i]se", "aerobic": "[ae]r[o]b[i]c", "muscle": "m[u]scle", "weight": "w[eigh]t", "strength": "str[e]ngth", "workout": "w[or]k[ou]t", "solar": "s[o]l[ar]", "eclipse": "[e]cl[i]pse", "orbit": "[or]b[i]t", "observe": "[o]bs[er]ve", "telescope": "t[e]l[e]sc[o]pe", "astronomy": "[a]str[o]n[o]m[y]", "quick": "qu[i]ck", "bite": "b[i]te", "return": "r[e]t[ur]n", "duty": "d[u]t[y]", "schedule": "sch[e]d[u]le", "doctor": "d[o]ct[or]", "hospital": "h[o]sp[i]t[a]l", "operation": "[o]p[e]r[a]ti[o]n", "patient": "p[a]ti[e]nt", "perform": "p[er]f[or]m", "out": "[ou]t", "appointment": "[a]pp[oi]ntm[e]nt", "rounds": "r[ou]nds", "emergency": "[e]m[er]g[e]nc[y]", "call": "c[a]ll", "file": "f[i]le", "nurse": "n[ur]se", "hexed": "h[e]xed", "ordinary": "[or]d[i]n[a]r[y]", "teenage": "t[ee]n[a]ge", "bracelet": "br[a]cel[e]t", "wrist": "wr[i]st", "magical": "m[a]g[i]c[a]l", "power": "p[ow][er]", "witch": "w[i]tch", "master": "m[a]st[er]", "discover": "d[i]sc[o]v[er]", "secret": "s[e]cr[e]t", "forever": "f[or][e]v[er]", "passport": "p[a]ssp[or]t"};
 function vowelize(w){var s=h('span');String(w).split(/([A-Za-z]+)/).forEach(function(part){var a=/^[A-Za-z]+$/.test(part)&&VMAP[part.toLowerCase()];if(!a){s.append(part);return}
