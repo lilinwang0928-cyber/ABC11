@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ABC 互動英語 293 期 · 互動學習單</title>
+<script>(function(){var t=null;try{t=localStorage.getItem("abc293_theme")}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";document.documentElement.classList.toggle("dark",t==="dark")})();</script>
 <style>
 :root{--ink:#22252b;--muted:#667085;--bg:#f3f5fa;--card:#fff;--line:#e2e6ef;--w0:#1d4fa0;--w1:#e07b1a;--w2:#2a6fb5;--w3:#c0283b;--w4:#3f8f3a;--wx:#5b4fa0;--adv:#0f7c8c;--quiz:#b8322a;--wb:#7a5a1e;--cards:#8a5a2b;--ok:#1f9d55;--bad:#d64545;--c:var(--w0)}
 *{box-sizing:border-box}
 .guide{border:none;background:#fff1d6;color:#8a4b00;border-radius:999px;padding:2px 10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;margin:2px 4px;vertical-align:middle}.guide:hover{background:#ffe2a8}
 .mrow{margin-top:4px;display:flex;gap:4px}
-.zy{display:flex;flex-wrap:wrap;gap:3px 8px;margin:4px 0 2px;cursor:pointer;--zb:22px}.zyw{display:flex;gap:2px;align-items:flex-start}.zb{display:flex;flex-direction:column;gap:2px;flex:none}.zb img{width:var(--zb);height:var(--zb);display:block}
+.vc>div{min-width:0;flex:1}.zy{display:flex;flex-wrap:wrap;gap:4px 8px;margin:4px 0 2px;cursor:pointer;--zb:20px;max-width:100%}.zyw{display:flex;flex-wrap:wrap;gap:2px;row-gap:3px;align-items:flex-start;max-width:100%;flex:none}.zb{display:flex;flex-direction:column;gap:2px;flex:none}.zb img{width:var(--zb);height:var(--zb);display:block}
 body.nozy .zy{display:none}
-@media(max-width:480px){.zy{--zb:19px}}.mrec{display:inline-flex;gap:4px;align-items:center}.rtip{font-size:12px;color:#d64545}.say.recing{background:#fdecec;outline:2px solid #d64545;animation:pl 1s infinite}@keyframes pl{50%{opacity:.5}}
+@media(max-width:480px){.zy{--zb:18px}}.mrec{display:inline-flex;gap:4px;align-items:center}.rtip{font-size:12px;color:#d64545}.say.recing{background:#fdecec;outline:2px solid #d64545;animation:pl 1s infinite}@keyframes pl{50%{opacity:.5}}
 .wbq{border-left:5px solid #c9a24a}
 .trbox{background:#f4f8ff;border:1px solid #d6e2f5;border-radius:8px;padding:6px 10px;margin:6px 0 2px;font-size:14px;color:#2b3a55;font-family:"Noto Sans TC",system-ui,sans-serif;line-height:1.6}.trops{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px 10px;margin-top:4px}.tro{color:#556}.tro.ok{color:#1f7a45;font-weight:700}.trfull{background:#f4f8ff;font-family:"Noto Sans TC",system-ui,sans-serif;font-size:15px}
 .paper{background:#fffef8;color:#222;border:1px solid #d9d4c0;border-radius:10px;padding:14px 16px;font-family:Georgia,"Times New Roman","Noto Serif TC",serif;line-height:1.7;margin-bottom:8px}
@@ -28,23 +29,23 @@ body.nozy .zy{display:none}
 .popt:hover{border-color:#cfc8ad}.popt.sel{border-color:#1d4fa0;background:#e9f0ff}.popt.ok{border-color:#1f9d55;background:#e3f6ea}.popt.bad{border-color:#d64545;background:#fde8e8}
 
 .vw{color:#e0457b}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .vw{color:#ff86b0}}
-:root[data-theme="dark"] .vw{color:#ff86b0}
-:root[data-theme="dark"]{--ink:#e6e8ee;--muted:#9aa3b5;--bg:#14171d;--card:#1d2129;--line:#323846}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e6e8ee;--muted:#9aa3b5;--bg:#14171d;--card:#1d2129;--line:#323846}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .vc,:root:not([data-theme="light"]) .opt,:root:not([data-theme="light"]) .chip,:root:not([data-theme="light"]) .cd,:root:not([data-theme="light"]) nav,:root:not([data-theme="light"]) nav button,:root:not([data-theme="light"]) .q,:root:not([data-theme="light"]) .unit>h2,:root:not([data-theme="light"]) textarea,:root:not([data-theme="light"]) .trow input{background:#232833;color:var(--ink)}
-:root:not([data-theme="light"]) .vc.ref,:root:not([data-theme="light"]) .note,:root:not([data-theme="light"]) .bank span,:root:not([data-theme="light"]) .hints span,:root:not([data-theme="light"]) .model{background:#2a2f3a;color:var(--ink)}
-:root:not([data-theme="light"]) .say,:root:not([data-theme="light"]) .tag{background:#2f3645;color:var(--ink)}
-:root:not([data-theme="light"]) .opt.ok,:root:not([data-theme="light"]) .chip.ok,:root:not([data-theme="light"]) .cd.done{background:#183a27}
-:root:not([data-theme="light"]) .opt.bad,:root:not([data-theme="light"]) .chip.bad{background:#3d1d1d}
-:root:not([data-theme="light"]) .btn.ghost{background:transparent}}
+html.dark .vw{color:#ff86b0}
+html.dark{--ink:#e6e8ee;--muted:#9aa3b5;--bg:#14171d;--card:#1d2129;--line:#323846}
+html.dark .vc,html.dark .opt,html.dark .chip,html.dark .cd,html.dark nav,html.dark nav button,html.dark .q,html.dark .unit>h2,html.dark textarea,html.dark .trow input{background:#232833;color:var(--ink)}
+html.dark .vc.ref,html.dark .note,html.dark .bank span,html.dark .hints span,html.dark .model{background:#2a2f3a;color:var(--ink)}
+html.dark .say,html.dark .tag{background:#2f3645;color:var(--ink)}
+html.dark .opt.ok,html.dark .chip.ok,html.dark .cd.done{background:#183a27}
+html.dark .opt.bad,html.dark .chip.bad{background:#3d1d1d}
+html.dark .btn.ghost{background:transparent}
+html.dark nav{background:#1a1e26;border-color:var(--line)}html.dark .trbox{background:#1f2836;border-color:#33445e;color:#cfdcf0}html.dark .tro{color:#aab6c8}html.dark .tro.ok{color:#6fd39b}html.dark .trfull{background:#1f2836;color:#cfdcf0}html.dark .guide{background:#4a3a1a;color:#ffd58a}html.dark .wbq{background:#232833}html.dark nav button.on{background:var(--c);border-color:var(--c);color:#fff}html.dark .ph i{color:#c9d1dd}html.dark .ph,html.dark .srow,html.dark .trow{border-color:var(--line)}html.dark .vc .zb img{filter:brightness(.92)}
+.themebtn{border:2px solid rgba(255,255,255,.7);background:rgba(255,255,255,.15);color:#fff;border-radius:999px;padding:4px 12px;font:inherit;font-weight:700;cursor:pointer}
 
 body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
 header{background:linear-gradient(135deg,#183f86,#2a6fb5 60%,#58a0e2);color:#fff;padding:20px 16px 16px}
 .hd{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .logo{font:900 42px/1 "Arial Black",Arial,sans-serif;letter-spacing:-2px;background:#fff;color:#183f86;padding:6px 12px;border-radius:10px}
 .hd h1{margin:0;font-size:26px}.hd p{margin:2px 0 0;opacity:.9;font-size:14px}
-.issue{margin-left:auto;background:#ffd84d;color:#222;font-weight:800;border-radius:12px;padding:6px 12px;font-size:14px}
+.themebtn{margin-left:auto}.issue{background:#ffd84d;color:#222;font-weight:800;border-radius:12px;padding:6px 12px;font-size:14px}
 nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 nav .in{max-width:980px;margin:0 auto;display:flex;gap:6px;padding:8px 12px}
 nav button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font:inherit;font-weight:700;cursor:pointer;color:var(--ink);flex:none}
@@ -116,7 +117,7 @@ textarea{width:100%;min-height:120px;font:inherit;border:2px solid var(--line);b
 <header><div class="hd">
   <div class="logo">ABC</div>
   <div><h1>互動英語 · 11 月號互動學習單</h1><p>2026 November · No.293 ｜ 本月焦點：飯店英語 Hotel English</p></div>
-  <div class="issue">No.293</div>
+  <button class="themebtn" id="themeBtn" type="button" title="切換深色／淺色">🌙 深色</button><div class="issue">No.293</div>
 </div></header>
 <nav><div class="in" id="nav"></div></nav>
 <div class="tools">
@@ -730,6 +731,7 @@ function go(id){Array.prototype.forEach.call(document.querySelectorAll('section.
   Array.prototype.forEach.call(nav.children,function(b){b.classList.toggle('on',b.getAttribute('data-target')===id)});
   if(id==='wrong')renderWB();store.set('tab',id);window.scrollTo(0,0);try{speechSynthesis.cancel()}catch(e){}}
 go(store.get('tab','home'));updScores();
+(function(){var b=document.getElementById('themeBtn');function lab(){var d=document.documentElement.classList.contains('dark');b.textContent=d?'☀️ 淺色':'🌙 深色'}lab();b.onclick=function(){var d=!document.documentElement.classList.contains('dark');document.documentElement.classList.toggle('dark',d);try{localStorage.setItem('abc293_theme',d?'dark':'light')}catch(e){}lab()};})();
 (function(){var c=document.getElementById('zyon');c.checked=store.get('zyon',true);document.body.classList.toggle('nozy',!c.checked);c.onchange=function(){store.set('zyon',c.checked);document.body.classList.toggle('nozy',!c.checked)}})();
 </script>
 </body>
